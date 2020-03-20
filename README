@@ -1,3 +1,16 @@
+To create a new project:
 - create directory "development"
-- ng new web-app
+- create the angular project: ng new web-app
 - npm install
+
+For Python:
+- cd into project root
+- type: python app.py
+- can hit rest services at: http://0.0.0.0:5000/angular-flask/service_name
+
+For Angular:
+- cd into development/web-app
+- type: npm start
+- app will load at: http://localhost:4200/
+
+

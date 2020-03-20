@@ -3,7 +3,7 @@ from flask import Flask, jsonify, send_from_directory
 app = Flask(__name__)
 
 
-@app.route('/get_map')
+@app.route('/angular-flask/get_map')
 def get_names():
     names = {'names':
              [
