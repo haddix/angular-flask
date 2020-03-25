@@ -3,6 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="8cccb65e-1332-402b-bcfa-cc38e1a58fe4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/development/web-app/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/development/web-app/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/development/web-app/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/development/web-app/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/development/web-app/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/development/web-app/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/development/web-app/src/app/core/services/map-data.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/development/web-app/src/app/core/services/map-data.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/development/web-app/src/app/map/map.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/development/web-app/src/app/map/map.module.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MapComponent } from './map.component';
+import { HomeComponent } from './home.component';
 import { RouterModule, Routes} from '@angular/router';
 import { ComponentsModule } from '../shared/components/components.module';
 
-const mapRoutes: Routes = [
-  {path: '', component: MapComponent}
+const homeRoutes: Routes = [
+  {path: '', component: HomeComponent}
 ]
 
 
 
 @NgModule({
-  declarations: [MapComponent],
+  declarations: [HomeComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(mapRoutes),
+    RouterModule.forChild(homeRoutes),
     ComponentsModule
   ]
 })
-export class MapModule { }
+export class HomeModule { }

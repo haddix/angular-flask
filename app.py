@@ -1,18 +1,16 @@
-#!/usr/bin/env python
+from flask_cors import CORS
 from flask import Flask, jsonify, send_from_directory
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route('/angular-flask/get_map')
 def get_names():
-    names = {'names':
+    locations = {'locations':
              [
-                 'fred',
-                 'john',
-                 'paul',
-                 'greg'
+                 {"name": "home", "coords":[41.141649, -96.226552]}
              ]}
-    return jsonify(names)
+    return jsonify(locations)
 
 @app.route('/get_people')
 def get_people():
