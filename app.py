@@ -5,14 +5,16 @@ CORS(app)
 
 
 @app.route('/angular-flask/get_map')
-def get_names():
+def get_map():
     locations = {'locations':
              [
-                 {"name": "home", "coords":[41.141649, -96.226552]}
+                 {"name": "jason", "coords":[41.141649, -96.226552]},
+                 {"name": "anthony", "coords": [41.141649, -96.226552]},
+                 {"name": "caleb", "coords": [41.141649, -96.226552]}
              ]}
     return jsonify(locations)
 
-@app.route('/get_people')
+@app.route('/angular-flask/get_people')
 def get_people():
     people = {"people": [
         {'name': 'fred', 'age': 10},

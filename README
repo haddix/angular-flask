@@ -2,6 +2,7 @@ To create a new project:
 - create directory "development"
 - create the angular project: ng new web-app
 - npm install
+    - may need to chmod 777 to the project if forking
 
 For Python:
 - cd into project root
