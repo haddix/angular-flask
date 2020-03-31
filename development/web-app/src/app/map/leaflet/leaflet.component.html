@@ -1,0 +1,13 @@
+
+<div style="width:100%; height: 300px;"
+leaflet 
+(leafletMapReady)="onMapReady($event)"
+[leafletOptions]="options"
+[leafletLayersControl]="layersControl"
+[leafletLayers]="markers"
+>
+</div>
+
+<ul>
+<li *ngFor='let location of map_data?.locations'>{{location.name}}</li>
+</ul>

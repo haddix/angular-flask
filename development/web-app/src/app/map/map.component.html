@@ -1,8 +1,3 @@
-<app-header></app-header>
-<p>map works!</p>
-
-<ul>
-    <li *ngFor='let location of map_data.locations'>{{location.name}}</li>
-</ul>
+<app-leaflet [map_data]="map_data$ | async"></app-leaflet>
 
 
