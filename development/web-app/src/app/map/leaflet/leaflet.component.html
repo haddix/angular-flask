@@ -11,3 +11,9 @@ leaflet
 <ul>
 <li *ngFor='let location of map_data?.locations'>{{location.name}}</li>
 </ul>
+
+<button (click)="start_draw()">start</button>
+<button (click)="stop_draw()">stop</button>
+<button (click)="pause_draw()">pause</button>
+<button (click)="resume_draw()">resume</button>
+<button (click)="speedup_draw()">fast</button>
