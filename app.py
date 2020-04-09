@@ -1,5 +1,6 @@
 from flask_cors import CORS
 from flask import Flask, jsonify, send_from_directory
+from src import map
 app = Flask(__name__)
 CORS(app)
 
@@ -12,7 +13,7 @@ def get_map():
                  {"name": "anthony", "coords": [41.141649, -96.226552]},
                  {"name": "caleb", "coords": [41.141649, -96.226552]}
              ]}
-    return jsonify(locations)
+    return jsonify(map.get_map_data())
 
 @app.route('/angular-flask/get_people')
 def get_people():

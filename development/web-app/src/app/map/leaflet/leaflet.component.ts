@@ -15,9 +15,9 @@ export class LeafletComponent implements OnChanges {
   markers: Layer[] = [];
 
   // Define our base layers so we can reference them multiple times
-  streetMaps = tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    detectRetina: true,
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  darkMode = tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png', {
+    maxZoom: 20,
+	  attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
   });
   wMaps = tileLayer('http://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png', {
     detectRetina: true,
@@ -26,26 +26,21 @@ export class LeafletComponent implements OnChanges {
 
   layersControl = {
     baseLayers: {
-      'Street Maps': this.streetMaps,
+      'Dark': this.darkMode,
       'Wikimedia Maps': this.wMaps
     }
   };
 
-  route1 = [[39.020425,-77.026329],[19.592166, -155.297919]];
-  route2 = [[39.020425,-77.026329],[51.338598, 10.397538]];
 
-  route3 = [[41.141649, -96.226552], [51.338598, 10.397538]];
-  route4 = [[39.020425, 77.026329], [51.338598, 10.397538]];
-  route5 = [[39.020425, -77.026329], [51.338598, 10.397538]];
-  route6 = [[39.020425, -77.026329], [51.338598, 10.397538]];
+  route_speed = 3000;
 
-  draw_route3: any;
+  routes:any;
   
   // Set the initial set of displayed layers (we could also use the leafletLayers input binding for this)
   options = {
-    layers: [ this.streetMaps], //, this.route, this.summit, this.paradise 
-    zoom: 2,
-    center: latLng([ 39.020425, -77.026329 ])
+    layers: [ this.darkMode], //, this.route, this.summit, this.paradise 
+    zoom: 11,
+    center: latLng([ 41.15444, -96.04225 ])
   };
 
  
@@ -62,9 +57,11 @@ export class LeafletComponent implements OnChanges {
   }
 
   ngOnChanges() {    
+    var overlays = {};
+    this.routes = [];
     if(this.map_data){
       this.map_data.locations.forEach( (location, index) => {
-        const new_marker = marker(location.coords, {
+        const new_marker = marker(location.coordinates[0], {
           icon: icon({
             iconSize: [ 25, 41 ],
             iconAnchor: [ 13, 41 ],
@@ -73,80 +70,75 @@ export class LeafletComponent implements OnChanges {
           })
         });
 
-        this.markers.push(new_marker);        
+        this.markers.push(new_marker);
+
+        const route = L.motion.polyline(location.coordinates, {
+          color: "#" + Math.floor(Math.random()*16777215).toString(16),
+          weight:4
+        }, {
+          auto: true,
+          duration: this.route_speed
+        }, {
+          removeOnEnd: true,
+          showMarker: false,
+          // icon: L.divIcon({html: "<i class='fa fa-car fa-2x' aria-hidden='true'></i>", iconSize: L.point(27.5, 24)})
+        });
+
+        this.routes.push(route);
+
+        route.addTo(this.map);
+
+        overlays[location.name] = route;
+        
+                
       });  
 
-      
-
-      const route1 = L.motion.polyline(this.route1, {
-        color: "red",
-        weight:2
-      }, {
-        auto: true,
-        duration: 3000
-      }, {
-        removeOnEnd: true,
-        showMarker: false,
-        icon: L.divIcon({html: "<i class='fa fa-car fa-2x' aria-hidden='true'></i>", iconSize: L.point(27.5, 24)})
-      });
-
-      route1.addTo(this.map);
-      
-      const route2 = L.motion.polyline(this.route2, {
-        color: "blue",
-        weight:2
-      }, {
-        auto: true,
-        duration: 3000
-      }, {
-        removeOnEnd: true,
-        showMarker: false,
-        icon: L.divIcon({html: "<i class='fa fa-car fa-2x' aria-hidden='true'></i>", iconSize: L.point(27.5, 24)})
-      });
-
-      route2.addTo(this.map);
-
-      this.draw_route3 = L.motion.polyline(this.route3, {
-        color: "blue",
-        weight:2
-      }, {
-        auto: true,
-        duration: 3000
-      }, {
-        removeOnEnd: true,
-        showMarker: false,
-        icon: L.divIcon({html: "<i class='fa fa-plane fa-2x' aria-hidden='true'></i>", iconSize: L.point(27.5, 24)})
-      });
-
-      this.draw_route3.addTo(this.map);
-
-      this.layersControl["overlays"] = {"pline":route1};
-
-  
+        
     }
+    this.layersControl["overlays"] = overlays;
 
   }
 
 
   start_draw(){
-      this.draw_route3.motionStart();
+    this.routes.forEach( (route, index) => {
+      route.motionStart();
+    });      
   }
 
-  pause_draw(){
-    this.draw_route3.motionPause();
+  pause_draw(){    
+    this.routes.forEach( (route, index) => {
+      route.motionPause();
+    });  
   }
 
-  resume_draw(){
-    this.draw_route3.motionResume();
+  resume_draw(){    
+    this.routes.forEach( (route, index) => {
+      route.motionResume();
+    });  
   }
 
-  stop_draw(){
-    this.draw_route3.motionStop();
+  stop_draw(){    
+    this.routes.forEach( (route, index) => {
+      route.motionStop();
+    });  
   }
 
-  speedup_draw(){
-    this.draw_route3.motionDuration(1000);
-    this.draw_route3.motionStart();
+  speedup_draw(){    
+    this.route_speed = this.route_speed - 500;
+    console.log(this.route_speed);
+    this.routes.forEach( (route, index) => {
+      route.motionDuration(this.route_speed);
+      route.motionStart();
+    });  
+  }
+
+  slowdown_draw(){    
+    this.route_speed = this.route_speed + 500;
+    this.routes.forEach( (route, index) => {
+      route.motionDuration(this.route_speed);
+      route.motionStart();
+    });  
   }
 
 }

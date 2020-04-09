@@ -1,13 +1,8 @@
 body {
   font-size: .875rem;
+  background-color: #ccc;
 }
 
-  
-.feather {
-  width: 16px;
-  height: 16px;
-  vertical-align: text-bottom;
-}
 
 /*
   * Sidebar
@@ -18,6 +13,7 @@ body {
   top: 0;
   bottom: 0;
   left: 0;
+  width:200px;
   z-index: 100; /* Behind the navbar */
   padding: 48px 0 0; /* Height of navbar */
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
@@ -36,12 +32,13 @@ body {
   .sidebar-sticky {
     position: -webkit-sticky;
     position: sticky;
+    background-color: rgba(0, 0, 0, .1);
   }
 }
 
 .sidebar .nav-link {
   font-weight: 500;
-  color: #333;
+  color: #fff;
 }
 
 .sidebar .nav-link .feather {
@@ -63,13 +60,6 @@ body {
   text-transform: uppercase;
 }
 
-/*
-  * Content
-  */
-
-[role="main"] {
-  padding-top: 60px; /* Space for fixed navbar */
-}
 
 /*
   * Navbar
@@ -79,23 +69,20 @@ body {
   padding-top: .75rem;
   padding-bottom: .75rem;
   font-size: 1rem;
-  background-color: rgba(0, 0, 0, .25);
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
 }
 
-.navbar .form-control {
+.navbar {
   padding: .75rem 1rem;
   border-width: 0;
   border-radius: 0;
 }
 
-.form-control-dark {
-  color: #fff;
-  background-color: rgba(255, 255, 255, .1);
-  border-color: rgba(255, 255, 255, .1);
-}
+/*
+  * Content
+  */
 
-.form-control-dark:focus {
-  border-color: transparent;
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
-}
+  [role="main"] {
+    padding-top: 60px; /* Space for fixed navbar */
+    margin-left: 200px;
+  }
