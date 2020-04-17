@@ -8,15 +8,64 @@ leaflet
 >
 </div>
 
+<div class="row">
+    <div class="col-lg-6">
 
+        <div class="card">
+            <div class="card-header">
+                Leaflet Motion - (speed: {{route_speed}} KM/H)
+            </div>
+            <div class="card-body">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button (click)="start_draw()" class="btn btn-secondary">start</button>
+                    <button (click)="stop_draw()"class="btn btn-secondary">stop</button>
+                    <button (click)="pause_draw()"class="btn btn-secondary">pause</button>
+                    <button (click)="resume_draw()"class="btn btn-secondary">resume</button>
+                    <button (click)="speedup_draw()"class="btn btn-secondary">faster</button>
+                    <button (click)="slowdown_draw()"class="btn btn-secondary">slower</button>
+                </div>
+                <div>
+                
+                </div>
+            </div>
+        </div>
 
-<button (click)="start_draw()">start</button>
-<button (click)="stop_draw()">stop</button>
-<button (click)="pause_draw()">pause</button>
-<button (click)="resume_draw()">resume</button>
-<button (click)="speedup_draw()">faster</button>
-<button (click)="slowdown_draw()">slower</button>
+    </div>
+    <div class="col-lg-6">
 
-<ul>
-    <li *ngFor='let location of map_data?.locations'>{{location.name}}</li>
-    </ul>
+        <div class="card">
+            <div class="card-header">
+                Leaflet Curve (has it's own animation)
+            </div>
+            <div class="card-body">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button (click)="start_draw_curve()" class="btn btn-secondary">start</button>                
+                </div>
+                <div>
+                
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+
+        <div class="card">
+            <div class="card-header">
+                Putting them all together
+            </div>
+            <div class="card-body">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button (click)="tell_a_story()" class="btn btn-secondary">Tell me a story</button>                    
+                </div>
+                <div>
+                
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
