@@ -210,6 +210,7 @@ export class LeafletComponent implements OnChanges {
     this.overlays = {};
     this.routes = [];
     this.routes = [];
+    var timeUntilLaunch = 0;
     this.map.fitBounds([[34.038474, -118.252141],[38.631101, -80.651906]], {
       padding: L.point(24, 24),
       maxZoom: 5,
@@ -217,59 +218,92 @@ export class LeafletComponent implements OnChanges {
     });
     if(this.map_data){
       console.log("TELL A STORY")
-      this.map_data.story.forEach( (location, index) => {
-        const new_marker = L.marker(location.coordinates[0], {
-          icon: L.divIcon({
-            className: 'custom-div-icon',
-            html: "<i class='fas fa-car' style='color:red; font-size: 20px;'></i>",
-            iconSize: [30, 42],
-            iconAnchor: [5, 20]
-          })
-        });
-
-        this.markers.push(new_marker);
+      this.map_data.story.forEach( (location, index) => {        
+        timeUntilLaunch += this.route_speed;
+        var icon = "";
+        var color = "";
+        if(location.type == "plane"){
+          icon = "<i class='fas fa-plane' style='color:skyblue; font-size: 20px;'></i>";
+          color = "skyblue";
+        }
+        else{
+          icon = "<i class='fas fa-car' style='color:steelblue; font-size: 20px;'></i>";
+          color = "steelblue";
+        }
 
         const route = L.motion.polyline(location.coordinates, {
-          color: "#" + Math.floor(Math.random()*16777215).toString(16),
+          color: color,
           weight:4
         },  {          
-          auto:true,
+          auto:false,
           duration:this.route_speed
         },
         {
           removeOnEnd: true,
           icon: L.divIcon({
             className: 'custom-div-icon',
-            html: "<i class='fas fa-car' style='color:red; font-size: 20px;'></i>",
+            html: icon,
             iconSize: [30, 42],
             iconAnchor: [5, 20]
           })
         }).motionDuration(this.route_speed);
 
         this.routes.push(route);
-
-        // route.addTo(this.map);
-
-        this.overlays[location.name] = route;
-        
-                
+                        
       });  
       
 
       this.seqGroup = L.motion.seq(this.routes).addTo(this.map);
       this.seqGroup.motionStart();
+
+      setTimeout(() =>{
+        //fire one
+        var pathOne = L.curve([
+          'M',[38.63402,- 79.83697],
+          'Q', this.get_midpoint([38.63402,- 79.83697], [36.187023, -115.255986], 'up'),//[59.777859, -44.007279],
+          [36.187023, -115.255986]
+        ], {animate: 2000}).addTo(this.map);
+        
+        var pathTwo= L.curve([
+          'M',[38.63402,- 79.83697],
+          'Q', this.get_midpoint([38.63402,- 79.83697], [39.095460, -94.554407], 'up'),//[59.777859, -44.007279],
+          [39.095460, -94.554407]
+        ], {animate: 2000}).addTo(this.map);
+
+        var pathThree = L.curve([
+          'M',[38.63402,- 79.83697],
+          'Q', this.get_midpoint([38.63402,- 79.83697], [40.759613, -111.827027], 'up'),//[59.777859, -44.007279],
+          [40.759613, -111.827027]
+        ], {animate: 2000}).addTo(this.map);
+
+        
+        //bomb goes off
+        setTimeout(() =>{
+          var circle = L.circleMarker(
+            [36.187023, -115.255986], 
+            { radius: 10, color: 'red', fillOpacity: 0.6, weight: 1 }) 
+            .addTo(this.map);
+
+
+          var newRadius = 100;
+          var interval = setInterval(function() {
+            var currentRadius = circle.getRadius();
+            console.debug("currentRadius", currentRadius)
+            if (currentRadius < newRadius) {
+                circle.setRadius(++currentRadius);
+                console.debug("new ", circle.getRadius())
+            } else {
+                clearTimeout(interval);
+            }
+          }, 1);
+
+        }, 2000);
+      }, timeUntilLaunch + 1000);
       
     }
-    this.layersControl["overlays"] = this.overlays;
+    // this.layersControl["overlays"] = this.overlays;
 
-    var pathOne = L.curve([
-      'M',[38.63402,- 79.83697],
-      'Q', this.get_midpoint([38.63402,- 79.83697], [36.187023, -115.255986], 'up'),//[59.777859, -44.007279],
-      [36.187023, -115.255986]
-    ], {animate: 2000}).addTo(this.map);
     
-    this.overlays["curve"] = pathOne;
-    this.layersControl["overlays"] = this.overlays;
 
 
     // this.map.fitBounds([[41.15444, -96.04225],[50.14874640066278,14.106445312500002]], {
