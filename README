@@ -40,7 +40,7 @@ create node_modules folder in development/web-app/
 - @elfalem/leaflet-curve
     - from terminal run npm install @elfalem/leaflet-curve
     - copy @elfalem folder to development/web-app/node_modules
-- Font Awesome new 5.13.0
+- Font Awesome 5.13.0
     - download from https://fontawesome.com/download
     - Select “Free for Web”
     - Rename folder to font-awesome and copy it to development/web-app/node_modules
