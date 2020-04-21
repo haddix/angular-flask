@@ -7,9 +7,11 @@
             <div class="col-md-6">
                 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
-                    <div class="form-group">                        
+                    <div class="form-group">
                         <input type="text" formControlName="firstName" class="form-control"
-                            [ngClass]="{ 'is-invalid': submitted && f.firstName.errors, 'valid-state': (f.firstName.value!=null && f.firstName.value!='') }" />                        
+                            [ngClass]="{ 'is-invalid': submitted && f.firstName.errors, 'valid-state': (f.firstName.value!=null && f.firstName.value!='') }" />
+                        <div class="underline-animation"></div>
+                        <div class="underline"></div>
                         <label for="firstName">First Name</label>
                         <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
                             <div *ngIf="f.firstName.errors.required">First Name is required</div>

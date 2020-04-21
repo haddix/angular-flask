@@ -28,7 +28,7 @@ export class FormComponent implements OnInit {
     });
 
     Object.keys(this.registerForm.controls).forEach(key => {
-      this.registerForm.controls[key].value;
+      this.registerForm.controls[key].get;
     });
 
 
@@ -38,9 +38,9 @@ export class FormComponent implements OnInit {
   get f() { return this.registerForm.controls; }
 
   onSubmit() {
-    
+
     console.log("TEST");
-    
+
     this.submitted = true;
 
     // stop here if form is invalid
