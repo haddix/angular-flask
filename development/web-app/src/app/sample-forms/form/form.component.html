@@ -1,0 +1,52 @@
+<div class="card">
+    <div class="card-header">
+        Example Form
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+                    <div class="form-group">                        
+                        <input type="text" formControlName="firstName" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.firstName.errors, 'valid-state': (f.firstName.value!=null && f.firstName.value!='') }" />                        
+                        <label for="firstName">First Name</label>
+                        <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                            <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                        </div>
+                    </div>
+                    <!-- <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" required>                        
+                    </div>
+                    <div class="form-group">
+                        <input type="date" class="form-control" id="date" required>
+                        <label for="date">Date</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="phone" required>
+                        <label for="phone">Phone</label>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                        <label for="exampleFormControlSelect1" id="">Example select</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="password" required>
+                        <label for="usr">Password</label>
+                    </div> -->
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <button class="btn btn-primary mr-1" (click)="onSubmit()">Register</button>
+        <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+    </div>
+</div>

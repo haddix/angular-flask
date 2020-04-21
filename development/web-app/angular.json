@@ -29,7 +29,7 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/bootstrap/dist/css/bootstrap.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.css",              
               "./node_modules/font-awesome/css/all.css",
               "./node_modules/leaflet/dist/leaflet.css",
               "src/styles.css"              
