@@ -1,7 +1,10 @@
 
 .form-group{
-    margin-bottom: 0px;
+    margin: 0;
+    padding: 0;
+    height: 70px;
 }
+
 
 .form-group>label {
   bottom: 30px;
@@ -17,14 +20,20 @@
 
 .form-control:focus~label {
   bottom: 55px;
-  font-size: 9pt;
+  font-size: 10pt;
+  font-weight: bold;
 }
 
 .valid-state~label{
   bottom: 55px;
-  font-size: 9pt;
+  font-size: 10pt;
+  font-weight: bold;
 }
 
-.invalid-feedback{
-  margin-top:-30px;
+.validator-feedback{
+  width: 100%;
+  font-size: 80%;
+  color: #dc3545;
+  margin-top: -30px;
 }
+

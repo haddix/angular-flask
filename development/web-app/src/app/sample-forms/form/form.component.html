@@ -11,8 +11,33 @@
                         <input type="text" formControlName="firstName" class="form-control"
                             [ngClass]="{ 'is-invalid': submitted && f.firstName.errors, 'valid-state': (f.firstName.value!=null && f.firstName.value!='') }" />                
                         <label for="firstName">First Name</label>
-                        <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-                            <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                        <div class="validator-feedback">
+                            <div *ngIf="submitted && f.firstName.errors && f.firstName.errors.required">First Name is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" formControlName="email" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.email.errors, 'valid-state': (f.email.value!=null && f.email.value!='') }" />                
+                        <label for="email">Email</label>
+                        <div class="validator-feedback">
+                            <div *ngIf="submitted && f.email.errors && f.email.errors.required">Email is required</div>
+                            <div *ngIf="submitted && f.email.errors && f.email.errors.email">Must be in email format</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" formControlName="birthDate" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.birthDate.errors, 'valid-state': (f.birthDate.value!=null && f.birthDate.value!='') }" />                
+                        <label for="birthDate">Birth Date</label>
+                        <div class="validator-feedback">
+                            <div *ngIf="submitted && f.birthDate.errors && f.birthDate.errors.required">Birth Date is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" formControlName="phoneNumber" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors, 'valid-state': (f.phoneNumber.value!=null && f.phoneNumber.value!='') }" />                
+                        <label for="phoneNumber">Phone Number</label>
+                        <div class="validator-feedback">
+                            <div *ngIf="submitted && f.phoneNumber.errors && f.phoneNumber.errors.required">Phone Number is required</div>
                         </div>
                     </div>
                     <!-- <div class="form-group">
