@@ -9,9 +9,7 @@
 
                     <div class="form-group">
                         <input type="text" formControlName="firstName" class="form-control"
-                            [ngClass]="{ 'is-invalid': submitted && f.firstName.errors, 'valid-state': (f.firstName.value!=null && f.firstName.value!='') }" />
-                        <div class="underline-animation"></div>
-                        <div class="underline"></div>
+                            [ngClass]="{ 'is-invalid': submitted && f.firstName.errors, 'valid-state': (f.firstName.value!=null && f.firstName.value!='') }" />                
                         <label for="firstName">First Name</label>
                         <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
                             <div *ngIf="f.firstName.errors.required">First Name is required</div>
