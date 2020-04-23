@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-// import { MustMatch } from './_helpers/must-match.validator';
+import { MustMatch } from '../../shared/helpers/must-match.validator';
 
 @Component({
   selector: 'app-form',
@@ -17,15 +17,17 @@ export class FormComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      firstName: [undefined, Validators.required],
+      firstName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      birthDate: [undefined, Validators.required],
-      phoneNumber: [undefined, Validators.required],
-      // password: ['', [Validators.required, Validators.minLength(6)]],
-      // confirmPassword: ['', Validators.required],
+      birthDate: ['', [Validators.required, Validators.pattern('^((?:0[0-9])|(?:[1-2][0-9])|(?:3[0-1]))/((?:0[1-9])|(?:1[0-2]))/((?:19|20)\\d{2})$')]],
+      phoneNumber: ['', [Validators.required, Validators.pattern('^\\d{3}-\\d{3}-\\d{4}$')]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', Validators.required],
+      exampleSelect: ['', Validators.required],
+      gender: ['', Validators.required],
       // acceptTerms: [false, Validators.requiredTrue]
     }, {
-      // validator: MustMatch('password', 'confirmPassword')
+      validator: MustMatch('password', 'confirmPassword')
     });
 
     Object.keys(this.registerForm.controls).forEach(key => {

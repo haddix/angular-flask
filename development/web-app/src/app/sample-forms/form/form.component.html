@@ -3,75 +3,101 @@
         Example Form
     </div>
     <div class="card-body">
-        <div class="row">
-            <div class="col-md-6">
-                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-md-6">
+
 
                     <div class="form-group">
                         <input type="text" formControlName="firstName" class="form-control"
-                            [ngClass]="{ 'is-invalid': submitted && f.firstName.errors, 'valid-state': (f.firstName.value!=null && f.firstName.value!='') }" />                
+                            [ngClass]="{ 'is-invalid': submitted && f.firstName.errors, 'valid-state': (f.firstName.value!=null && f.firstName.value!='') }" />
                         <label for="firstName">First Name</label>
                         <div class="validator-feedback">
-                            <div *ngIf="submitted && f.firstName.errors && f.firstName.errors.required">First Name is required</div>
+                            <div *ngIf="submitted && f.firstName.errors && f.firstName.errors.required">First Name is
+                                required</div>
                         </div>
                     </div>
                     <div class="form-group">
                         <input type="text" formControlName="email" class="form-control"
-                            [ngClass]="{ 'is-invalid': submitted && f.email.errors, 'valid-state': (f.email.value!=null && f.email.value!='') }" />                
+                            [ngClass]="{ 'is-invalid': submitted && f.email.errors, 'valid-state': (f.email.value!=null && f.email.value!='') }" />
                         <label for="email">Email</label>
                         <div class="validator-feedback">
                             <div *ngIf="submitted && f.email.errors && f.email.errors.required">Email is required</div>
-                            <div *ngIf="submitted && f.email.errors && f.email.errors.email">Must be in email format</div>
+                            <div *ngIf="submitted && f.email.errors && f.email.errors.email">Must be in email format
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <input type="text" formControlName="birthDate" class="form-control"
-                            [ngClass]="{ 'is-invalid': submitted && f.birthDate.errors, 'valid-state': (f.birthDate.value!=null && f.birthDate.value!='') }" />                
+                            [ngClass]="{ 'is-invalid': submitted && f.birthDate.errors, 'valid-state': (f.birthDate.value!=null && f.birthDate.value!='') }" />
                         <label for="birthDate">Birth Date</label>
                         <div class="validator-feedback">
                             <div *ngIf="submitted && f.birthDate.errors && f.birthDate.errors.required">Birth Date is required</div>
+                            <div *ngIf="submitted && f.birthDate.errors && f.birthDate.errors.pattern">Birth Date pattern</div>
                         </div>
                     </div>
                     <div class="form-group">
                         <input type="text" formControlName="phoneNumber" class="form-control"
-                            [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors, 'valid-state': (f.phoneNumber.value!=null && f.phoneNumber.value!='') }" />                
+                            [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors, 'valid-state': (f.phoneNumber.value!=null && f.phoneNumber.value!='') }" />
                         <label for="phoneNumber">Phone Number</label>
                         <div class="validator-feedback">
                             <div *ngIf="submitted && f.phoneNumber.errors && f.phoneNumber.errors.required">Phone Number is required</div>
+                            <div *ngIf="submitted && f.phoneNumber.errors && f.phoneNumber.errors.pattern">Phone pattern</div>
                         </div>
                     </div>
-                    <!-- <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" required>                        
+
+
+                    <div class="form-group">
+                        <input type="password" formControlName="password" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.password.errors, 'valid-state': (f.password.value!=null && f.password.value!='') }" />
+                        <label>Password</label>
+                        <div *ngIf="submitted && f.password.errors" class="validator-feedback">
+                            <div *ngIf="f.password.errors.required">Password is required</div>
+                            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <input type="date" class="form-control" id="date" required>
-                        <label for="date">Date</label>
+                        <input type="password" formControlName="confirmPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors, 'valid-state': (f.confirmPassword.value!=null && f.confirmPassword.value!='') }" />
+                        <label>Confirm Password</label>
+                        <div *ngIf="submitted && f.confirmPassword.errors" class="validator-feedback">
+                            <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
+                            <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+                        </div>
                     </div>
+
+                </div>
+                <div class="col-md-6">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="phone" required>
-                        <label for="phone">Phone</label>
-                    </div>
-                    <div class="form-group">
-                        <select class="form-control" id="exampleFormControlSelect1">
+                        <select formControlName="exampleSelect" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.exampleSelect.errors, 'valid-state': (f.exampleSelect.value!=null && f.exampleSelect.value!='') }" id="exampleFormControlSelect1"  >
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
                             <option>4</option>
                             <option>5</option>
                         </select>
-                        <label for="exampleFormControlSelect1" id="">Example select</label>
+                        <label for="exampleFormControlSelect1">Example select</label>
+                        <div *ngIf="submitted && f.exampleSelect.errors" class="validator-feedback">
+                            <div *ngIf="f.exampleSelect.errors.required">Choose One</div>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" id="password" required>
-                        <label for="usr">Password</label>
-                    </div> -->
-                </form>
+                        <fieldset>
+                            <legend>Gender</legend>
+                            <input type="radio" id="male" value="Male" formControlName="gender">
+                            <label for="male"> male </label>
+                            <input type="radio" id="female" value="Female" formControlName="gender">
+                            <label for="female"> female </label>
+                            <div *ngIf="submitted && f.gender.errors" class="validator-feedback-fieldset">
+                                <div *ngIf="f.gender.errors.required">Choose One</div>
+                            </div> 
+                        </fieldset>                                               
+                    </div>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
     <div class="card-footer">
-        <button class="btn btn-primary mr-1" (click)="onSubmit()">Register</button>
+        <button class="btn btn-primary mr-1" (click)="onSubmit()">Submit</button>
         <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
     </div>
 </div>

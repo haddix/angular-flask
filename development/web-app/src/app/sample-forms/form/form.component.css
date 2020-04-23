@@ -21,13 +21,12 @@
 .form-control:focus~label {
   bottom: 55px;
   font-size: 10pt;
-  font-weight: bold;
 }
+
 
 .valid-state~label{
   bottom: 55px;
   font-size: 10pt;
-  font-weight: bold;
 }
 
 .validator-feedback{
@@ -37,3 +36,29 @@
   margin-top: -30px;
 }
 
+.validator-feedback-fieldset{
+  width: 100%;
+  font-size: 80%;
+  color: #dc3545;
+}
+
+legend{
+  font-size: 10pt;
+  width: 50px;
+}
+
+fieldset {
+  display: block;
+  margin-left: 2px;
+  margin-right: 2px;
+  padding-top: 0.35em;
+  padding-bottom: 0.625em;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  border: 1px solid #ccc;
+}
+
+fieldset label{
+  padding-left: 5px;
+  padding-right: 10px;
+}
