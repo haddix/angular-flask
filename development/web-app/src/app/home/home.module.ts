@@ -4,6 +4,7 @@ import { HomeComponent } from './home.component';
 import { RouterModule, Routes} from '@angular/router';
 import { ComponentsModule } from '../shared/components/components.module';
 
+
 const homeRoutes: Routes = [
   {path: '', component: HomeComponent}
 ]
@@ -15,7 +16,7 @@ const homeRoutes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(homeRoutes),
-    ComponentsModule
+    ComponentsModule,
   ]
 })
 export class HomeModule { }
