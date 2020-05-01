@@ -1,1 +1,7 @@
-<p>tree works!</p>
+
+<tree-root [ngClass]="'expand-tree'" [nodes]="nodes" [options]="options" (initialized)="tree_init($event)">
+    <ng-template #treeNodeTemplate let-node let-index="index">
+        <span>{{ node.data.name }}</span>
+    </ng-template>
+    <ng-template #loadingTemplate>Loading, please hold....not sure this works</ng-template>
+</tree-root>
