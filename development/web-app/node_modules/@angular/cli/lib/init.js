@@ -35,13 +35,6 @@ function _fromPackageJson(cwd = process.cwd()) {
     } while (cwd != path.dirname(cwd));
     return null;
 }
-/**
- * Disable Browserslist old data warning as otherwise with every release we'd need to update this dependency
- * which is cumbersome considering we pin versions and the warning is not user actionable.
- * `Browserslist: caniuse-lite is outdated. Please run next command `npm update`
- * See: https://github.com/browserslist/browserslist/blob/819c4337456996d19db6ba953014579329e9c6e1/node.js#L324
- */
-process.env.BROWSERSLIST_IGNORE_OLD_DATA = '1';
 // Check if we need to profile this CLI run.
 if (process.env['NG_CLI_PROFILING']) {
     let profiler;
@@ -66,19 +59,26 @@ if (process.env['NG_CLI_PROFILING']) {
     process.on('SIGINT', () => exitHandler({ exit: true }));
     process.on('uncaughtException', () => exitHandler({ exit: true }));
 }
-let cli;
-const disableVersionCheckEnv = process.env['NG_DISABLE_VERSION_CHECK'];
-/**
- * Disable CLI version mismatch checks and forces usage of the invoked CLI
- * instead of invoking the local installed version.
- */
-const disableVersionCheck = disableVersionCheckEnv !== undefined &&
-    disableVersionCheckEnv !== '0' &&
-    disableVersionCheckEnv.toLowerCase() !== 'false';
-if (disableVersionCheck) {
-    cli = require('./cli');
-}
-else {
+(async () => {
+    /**
+     * Disable Browserslist old data warning as otherwise with every release we'd need to update this dependency
+     * which is cumbersome considering we pin versions and the warning is not user actionable.
+     * `Browserslist: caniuse-lite is outdated. Please run next command `npm update`
+     * See: https://github.com/browserslist/browserslist/blob/819c4337456996d19db6ba953014579329e9c6e1/node.js#L324
+     */
+    process.env.BROWSERSLIST_IGNORE_OLD_DATA = '1';
+    const disableVersionCheckEnv = process.env['NG_DISABLE_VERSION_CHECK'];
+    /**
+     * Disable CLI version mismatch checks and forces usage of the invoked CLI
+     * instead of invoking the local installed version.
+     */
+    const disableVersionCheck = disableVersionCheckEnv !== undefined &&
+        disableVersionCheckEnv !== '0' &&
+        disableVersionCheckEnv.toLowerCase() !== 'false';
+    if (disableVersionCheck) {
+        return (await Promise.resolve().then(() => require('./cli'))).default;
+    }
+    let cli;
     try {
         const projectLocalCli = require.resolve('@angular/cli', { paths: [process.cwd()] });
         // This was run from a global, check local version.
@@ -94,7 +94,7 @@ else {
             console.error(e);
             shouldWarn = true;
         }
-        if (shouldWarn && config_1.isWarningEnabled('versionMismatch')) {
+        if (shouldWarn && await config_1.isWarningEnabled('versionMismatch')) {
             const warning = color_1.colors.yellow(core_1.tags.stripIndents `
       Your global Angular CLI version (${globalVersion}) is greater than your local
       version (${localVersion}). The local Angular CLI version is used.
@@ -114,35 +114,36 @@ else {
         }
         // No error implies a projectLocalCli, which will load whatever
         // version of ng-cli you have installed in a local package.json
-        cli = require(projectLocalCli);
+        cli = await Promise.resolve().then(() => require(projectLocalCli));
     }
     catch (_a) {
         // If there is an error, resolve could not find the ng-cli
         // library from a package.json. Instead, include it from a relative
         // path to this script file (which is likely a globally installed
         // npm package). Most common cause for hitting this is `ng new`
-        cli = require('./cli');
+        cli = await Promise.resolve().then(() => require('./cli'));
     }
-}
-if ('default' in cli) {
-    cli = cli['default'];
-}
-// This is required to support 1.x local versions with a 6+ global
-let standardInput;
-try {
-    standardInput = process.stdin;
-}
-catch (e) {
-    delete process.stdin;
-    process.stdin = new stream_1.Duplex();
-    standardInput = process.stdin;
-}
-cli({
-    cliArgs: process.argv.slice(2),
-    inputStream: standardInput,
-    outputStream: process.stdout,
-})
-    .then((exitCode) => {
+    if ('default' in cli) {
+        cli = cli['default'];
+    }
+    return cli;
+})().then(cli => {
+    // This is required to support 1.x local versions with a 6+ global
+    let standardInput;
+    try {
+        standardInput = process.stdin;
+    }
+    catch (e) {
+        delete process.stdin;
+        process.stdin = new stream_1.Duplex();
+        standardInput = process.stdin;
+    }
+    return cli({
+        cliArgs: process.argv.slice(2),
+        inputStream: standardInput,
+        outputStream: process.stdout,
+    });
+}).then((exitCode) => {
     process.exit(exitCode);
 })
     .catch((err) => {

@@ -63,6 +63,7 @@ export interface CompressOptions {
     unsafe_comps?: boolean;
     unsafe_Function?: boolean;
     unsafe_math?: boolean;
+    unsafe_symbols?: boolean;
     unsafe_methods?: boolean;
     unsafe_proto?: boolean;
     unsafe_regexp?: boolean;
@@ -101,7 +102,13 @@ export interface OutputOptions {
     ascii_only?: boolean;
     beautify?: boolean;
     braces?: boolean;
-    comments?: boolean | 'all' | 'some' | RegExp | Function;
+    comments?: boolean | 'all' | 'some' | RegExp | ( (node: AST_Node, comment: {
+        value: string,
+        type: 'comment1' | 'comment2' | 'comment3' | 'comment4',
+        pos: number,
+        line: number,
+        col: number,
+    }) => boolean );
     ecma?: ECMA;
     ie8?: boolean;
     indent_level?: number;
@@ -121,6 +128,7 @@ export interface OutputOptions {
     webkit?: boolean;
     width?: number;
     wrap_iife?: boolean;
+    wrap_func_args?: boolean;
 }
 
 export enum OutputQuoteStyle {
@@ -156,7 +164,8 @@ export interface MinifyOutput {
 }
 
 export interface SourceMapOptions {
-    content?: RawSourceMap;
+    /** Source map object, 'inline' or source map file content */
+    content?: RawSourceMap | string;
     includeSources?: boolean;
     filename?: string;
     root?: string;

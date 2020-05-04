@@ -18,7 +18,7 @@ const mapRoutes: Routes = [
     CommonModule,
     RouterModule.forChild(mapRoutes),
     ComponentsModule,
-    LeafletModule.forRoot()
+    LeafletModule
   ]
 })
 export class MapModule { }

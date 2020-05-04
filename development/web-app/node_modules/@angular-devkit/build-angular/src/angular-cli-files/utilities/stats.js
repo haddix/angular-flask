@@ -24,6 +24,7 @@ exports.formatSize = formatSize;
 function generateBundleStats(info, colors) {
     const g = (x) => (colors ? bold(green(x)) : x);
     const y = (x) => (colors ? bold(yellow(x)) : x);
+    const id = info.id ? y(info.id.toString()) : '';
     const size = typeof info.size === 'number' ? ` ${formatSize(info.size)}` : '';
     const files = info.files.map(f => path.basename(f)).join(', ');
     const names = info.names ? ` (${info.names.join(', ')})` : '';
@@ -31,7 +32,7 @@ function generateBundleStats(info, colors) {
     const flags = ['rendered', 'recorded']
         .map(f => (f && info[f] ? g(` [${f}]`) : ''))
         .join('');
-    return `chunk {${y(info.id.toString())}} ${g(files)}${names}${size} ${initial}${flags}`;
+    return `chunk {${id}} ${g(files)}${names}${size} ${initial}${flags}`;
 }
 exports.generateBundleStats = generateBundleStats;
 function generateBuildStats(hash, time, colors) {
@@ -46,8 +47,9 @@ function statsToString(json, statsConfig) {
     const changedChunksStats = json.chunks
         .filter((chunk) => chunk.rendered)
         .map((chunk) => {
-        const asset = json.assets.filter((x) => x.name == chunk.files[0])[0];
-        return generateBundleStats({ ...chunk, size: asset && asset.size }, colors);
+        const assets = json.assets.filter((asset) => chunk.files.indexOf(asset.name) != -1);
+        const summedSize = assets.filter((asset) => !asset.name.endsWith(".map")).reduce((total, asset) => { return total + asset.size; }, 0);
+        return generateBundleStats({ ...chunk, size: summedSize }, colors);
     });
     const unchangedChunkNumber = json.chunks.length - changedChunksStats.length;
     if (unchangedChunkNumber > 0) {
