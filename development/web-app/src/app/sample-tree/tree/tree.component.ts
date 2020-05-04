@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { TREE_ACTIONS, KEYS, IActionMapping, ITreeOptions } from 'angular-tree-component';
-
+import { ContextMenuComponent } from 'ngx-contextmenu';
 
 @Component({
   selector: 'app-tree',
@@ -43,6 +43,9 @@ export class TreeComponent implements OnInit {
       mouse: {
         dblClick: (tree, node, $event) => {
           if (node.hasChildren) TREE_ACTIONS.TOGGLE_EXPANDED(tree, node, $event);
+        },
+        contextMenu: (model: any, node: any, event: any) => {
+            console.log('in context menu...');
         }
       },
       keys: {
@@ -66,6 +69,8 @@ export class TreeComponent implements OnInit {
     animateSpeed: 30,
     animateAcceleration: 1.2,
     // scrollContainer: document.documentElement 
+
+    
   }
   
   constructor() { }
@@ -76,6 +81,19 @@ export class TreeComponent implements OnInit {
 
   tree_init(event){
     event.treeModel.expandAll();
+  }
+
+  
+  name = 'Angular';
+  public items = [
+      { name: 'John', otherProperty: 'Foo' },
+      { name: 'Joe', otherProperty: 'Bar' }
+  ];
+
+  @ViewChild(ContextMenuComponent, { static: true }) public basicMenu: ContextMenuComponent;
+
+  showMessage(message: any) {
+    console.log(message);
   }
 
 }

@@ -4,6 +4,7 @@ body {
 }
 
 
+
 /*
   * Sidebar
   */
@@ -174,7 +175,7 @@ Tree styles
     padding-left: 0;
   }
   
-  li
+  tree-root li
   {
     display: inline;
     list-style-type: none;

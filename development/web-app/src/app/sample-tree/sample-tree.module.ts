@@ -4,6 +4,8 @@ import { SampleTreeComponent } from './sample-tree.component';
 import { TreeComponent } from './tree/tree.component';
 import { RouterModule, Routes} from '@angular/router';
 import { TreeModule } from 'angular-tree-component';
+import { ContextMenuModule } from 'ngx-contextmenu';
+
 
 const treesRoutes: Routes = [
   {path: '', component: SampleTreeComponent}
@@ -16,6 +18,7 @@ const treesRoutes: Routes = [
     CommonModule,
     RouterModule.forChild(treesRoutes),
     TreeModule.forRoot(),
+    ContextMenuModule.forRoot()
   ]
 })
 export class SampleTreeModule { }

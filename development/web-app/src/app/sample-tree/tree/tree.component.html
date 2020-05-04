@@ -1,3 +1,25 @@
+<p>
+    Right click on someone's name:
+  </p>
+  <ul>
+      <li *ngFor="let item of items" [contextMenu]="basicMenu" [contextMenuSubject]="item">{{item?.name}}</li>
+  </ul>
+  <context-menu>
+    <ng-template contextMenuItem (execute)="showMessage('Hi, ' + $event.item.name)">
+      Say hi!
+    </ng-template>
+    <ng-template contextMenuItem divider="true"></ng-template>
+    <ng-template contextMenuItem let-item (execute)="showMessage($event.item.name + ' said: ' + $event.item.otherProperty)">
+      Bye, {{item?.name}}
+    </ng-template>
+    <!-- <ng-template contextMenuItem passive="true">
+      Input something: <input type="text">
+    </ng-template> -->
+  </context-menu>
+
+
+<p>sep</p>
+
 
 <tree-root [ngClass]="'expand-tree'" [nodes]="nodes" [options]="options" (initialized)="tree_init($event)">
     <ng-template #treeNodeTemplate let-node let-index="index">
