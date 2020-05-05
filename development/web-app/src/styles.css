@@ -282,3 +282,31 @@ Tree styles
  
 
  
+  /* end tree */
+
+
+  /* context menu styles */
+
+  .ngx-contextmenu .dropdown-menu {
+    padding: 0px;
+  }
+  .ngx-contextmenu li {
+    display: block;
+    text-transform: uppercase;
+    text-align: center;
+    color: #666;
+  }
+  .ngx-contextmenu li:first-child {
+    border-top:none;
+  }
+  .ngx-contextmenu a {
+    color:#666;
+    display: block;
+    padding: 0.5em 1em;
+  }
+  .ngx-contextmenu a:hover {
+    color:#000;
+    background-color:#ccc;
+  }
+
+  /* end context menu styles */

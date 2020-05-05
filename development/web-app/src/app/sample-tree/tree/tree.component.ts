@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TREE_ACTIONS, KEYS, IActionMapping, ITreeOptions } from 'angular-tree-component';
 import { ContextMenuComponent } from 'ngx-contextmenu';
+import { v4 as uuid } from 'uuid';
+import * as _ from 'lodash'
 
 @Component({
   selector: 'app-tree',
@@ -9,6 +11,10 @@ import { ContextMenuComponent } from 'ngx-contextmenu';
 })
 export class TreeComponent implements OnInit {
 
+  @ViewChild(ContextMenuComponent, { static: true }) public basicMenu: ContextMenuComponent;
+
+  selected_node = "";
+  
   nodes = [
     {
       id: 1,
@@ -41,11 +47,18 @@ export class TreeComponent implements OnInit {
     hasChildrenField: 'nodes',
     actionMapping: {
       mouse: {
-        dblClick: (tree, node, $event) => {
-          if (node.hasChildren) TREE_ACTIONS.TOGGLE_EXPANDED(tree, node, $event);
+        dblClick: (model: any, node: any, event: any) => {
+          if(this.selected_node == ""){
+            this.selected_node = node.data.id;
+          }
+          else{
+            this.selected_node = "";
+          }
+            
+          console.log(node.data.id);
         },
-        contextMenu: (model: any, node: any, event: any) => {
-            console.log('in context menu...');
+        click: (model: any, node: any, event: any) => {
+          console.log(node.data.id);
         }
       },
       keys: {
@@ -78,22 +91,44 @@ export class TreeComponent implements OnInit {
   ngOnInit() {
     
   }
-
+  
+  treeModel:any;
   tree_init(event){
     event.treeModel.expandAll();
+    this.treeModel = event.treeModel;
   }
 
+
+  add_root_node(){
+    this.nodes.push({
+      id: uuid(),
+      name: 'new item',
+      children: [       
+      ]
+    })
+    this.treeModel.update();
+  }
   
-  name = 'Angular';
-  public items = [
-      { name: 'John', otherProperty: 'Foo' },
-      { name: 'Joe', otherProperty: 'Bar' }
-  ];
+  add_node(node) {
+    console.log(node);
+    node.data.children.push({
+      id: uuid(),
+      name: 'new item',
+      children: [       
+      ]
+    });
+    this.treeModel.update();
+  }
 
-  @ViewChild(ContextMenuComponent, { static: true }) public basicMenu: ContextMenuComponent;
-
-  showMessage(message: any) {
-    console.log(message);
+  delete_node(node){
+    let parentNode = node.realParent ? node.realParent : node.treeModel.virtualRoot;
+    _.remove(parentNode.data.children, function (child) {
+        return child === node.data;
+    });
+    this.treeModel.update();
+    // if (node.parent.data.children.length === 0) {
+    //     node.parent.data.hasChildren = false;
+    // }
   }
 
 }
