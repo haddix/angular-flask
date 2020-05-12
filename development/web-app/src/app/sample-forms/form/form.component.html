@@ -30,7 +30,7 @@
                     <div class="form-group">
                         <input type="text" formControlName="birthDate" class="form-control"
                             [ngClass]="{ 'is-invalid': submitted && f.birthDate.errors, 'valid-state': (f.birthDate.value!=null && f.birthDate.value!='') }" />
-                        <label for="birthDate">Birth Date</label>
+                        <label for="birthDate">Birth Date <span class="example">(mm/dd/yyyy)</span></label>
                         <div class="validator-feedback">
                             <div *ngIf="submitted && f.birthDate.errors && f.birthDate.errors.required">Birth Date is required</div>
                             <div *ngIf="submitted && f.birthDate.errors && f.birthDate.errors.pattern">Birth Date pattern</div>
@@ -39,7 +39,7 @@
                     <div class="form-group">
                         <input type="text" formControlName="phoneNumber" class="form-control"
                             [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors, 'valid-state': (f.phoneNumber.value!=null && f.phoneNumber.value!='') }" />
-                        <label for="phoneNumber">Phone Number</label>
+                        <label for="phoneNumber">Phone Number <span class="example">(xxx-xxx-xxxx)</span></label>
                         <div class="validator-feedback">
                             <div *ngIf="submitted && f.phoneNumber.errors && f.phoneNumber.errors.required">Phone Number is required</div>
                             <div *ngIf="submitted && f.phoneNumber.errors && f.phoneNumber.errors.pattern">Phone pattern</div>

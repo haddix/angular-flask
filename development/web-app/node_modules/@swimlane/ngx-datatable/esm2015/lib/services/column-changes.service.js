@@ -1,0 +1,23 @@
+import { __decorate } from "tslib";
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
+/**
+ * service to make DatatableComponent aware of changes to
+ * input bindings of DataTableColumnDirective
+ */
+let ColumnChangesService = class ColumnChangesService {
+    constructor() {
+        this.columnInputChanges = new Subject();
+    }
+    get columnInputChanges$() {
+        return this.columnInputChanges.asObservable();
+    }
+    onInputChange() {
+        this.columnInputChanges.next();
+    }
+};
+ColumnChangesService = __decorate([
+    Injectable()
+], ColumnChangesService);
+export { ColumnChangesService };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29sdW1uLWNoYW5nZXMuc2VydmljZS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0Bzd2ltbGFuZS9uZ3gtZGF0YXRhYmxlLyIsInNvdXJjZXMiOlsibGliL3NlcnZpY2VzL2NvbHVtbi1jaGFuZ2VzLnNlcnZpY2UudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUFBLE9BQU8sRUFBRSxVQUFVLEVBQUUsTUFBTSxlQUFlLENBQUM7QUFFM0MsT0FBTyxFQUFjLE9BQU8sRUFBRSxNQUFNLE1BQU0sQ0FBQztBQUUzQzs7O0dBR0c7QUFFSCxJQUFhLG9CQUFvQixHQUFqQyxNQUFhLG9CQUFvQjtJQUFqQztRQUNVLHVCQUFrQixHQUFHLElBQUksT0FBTyxFQUFhLENBQUM7SUFTeEQsQ0FBQztJQVBDLElBQUksbUJBQW1CO1FBQ3JCLE9BQU8sSUFBSSxDQUFDLGtCQUFrQixDQUFDLFlBQVksRUFBRSxDQUFDO0lBQ2hELENBQUM7SUFFRCxhQUFhO1FBQ1gsSUFBSSxDQUFDLGtCQUFrQixDQUFDLElBQUksRUFBRSxDQUFDO0lBQ2pDLENBQUM7Q0FDRixDQUFBO0FBVlksb0JBQW9CO0lBRGhDLFVBQVUsRUFBRTtHQUNBLG9CQUFvQixDQVVoQztTQVZZLG9CQUFvQiIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IEluamVjdGFibGUgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcblxuaW1wb3J0IHsgT2JzZXJ2YWJsZSwgU3ViamVjdCB9IGZyb20gJ3J4anMnO1xuXG4vKipcbiAqIHNlcnZpY2UgdG8gbWFrZSBEYXRhdGFibGVDb21wb25lbnQgYXdhcmUgb2YgY2hhbmdlcyB0b1xuICogaW5wdXQgYmluZGluZ3Mgb2YgRGF0YVRhYmxlQ29sdW1uRGlyZWN0aXZlXG4gKi9cbkBJbmplY3RhYmxlKClcbmV4cG9ydCBjbGFzcyBDb2x1bW5DaGFuZ2VzU2VydmljZSB7XG4gIHByaXZhdGUgY29sdW1uSW5wdXRDaGFuZ2VzID0gbmV3IFN1YmplY3Q8dW5kZWZpbmVkPigpO1xuXG4gIGdldCBjb2x1bW5JbnB1dENoYW5nZXMkKCk6IE9ic2VydmFibGU8dW5kZWZpbmVkPiB7XG4gICAgcmV0dXJuIHRoaXMuY29sdW1uSW5wdXRDaGFuZ2VzLmFzT2JzZXJ2YWJsZSgpO1xuICB9XG5cbiAgb25JbnB1dENoYW5nZSgpOiB2b2lkIHtcbiAgICB0aGlzLmNvbHVtbklucHV0Q2hhbmdlcy5uZXh0KCk7XG4gIH1cbn1cbiJdfQ==

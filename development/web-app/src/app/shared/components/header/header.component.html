@@ -13,7 +13,10 @@
 
 
 <nav class="navbar fixed-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Angular Flask</a>
+    <a class="navbar-brand" href="#"><i class="fab fa-angular"></i> Angular Flask</a>
+    <div class="header-tools">
+      <i class="fas fa-user"></i>
+    </div>
 </nav>
 <nav class="bg-dark sidebar">
   <div class="sidebar-sticky">
@@ -21,25 +24,31 @@
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['/home']">
           <span data-feather="file-text"></span>
-          Home
+          <i class="fas fa-home"></i> Home
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['/map']">
           <span data-feather="file-text"></span>
-          Map
+          <i class="fas fa-map"></i> Maps
         </a>
       </li>      
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['/forms']">
           <span data-feather="file-text"></span>
-          Forms
+          <i class="fas fa-file"></i> Forms
         </a>
       </li>     
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['/trees']">
           <span data-feather="file-text"></span>
-          Trees
+          <i class="fas fa-sitemap"></i> Trees
+        </a>
+      </li>  
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/tables']">
+          <span data-feather="file-text"></span>
+          <i class="fas fa-table"></i> Tables
         </a>
       </li>   
     </ul>

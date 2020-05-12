@@ -1,23 +1,32 @@
+<div class="card">
+    <div class="card-header">
+        Tree Hierarchy
+    </div>
+    <div class="card-body">
+        <tree-root [ngClass]="'expand-tree'" [nodes]="nodes" [options]="options" (initialized)="tree_init($event)">
+            <ng-template #treeNodeTemplate let-node let-index="index">
+                <div [hidden]="selected_node == node.data.id">
+                    <span [contextMenu]="basicMenu" [contextMenuSubject]="node">{{ node.data.name }}</span>
+                </div>
+                <div *ngIf="selected_node == node.data.id">
+                    <input type="text" [(ngModel)]="node.data.name" />
+                </div>                
+            </ng-template>
+            <ng-template #loadingTemplate>Loading, please hold....not sure this works</ng-template>
+        </tree-root>
+    </div>
+</div>
 
-<button class="btn btn-primary" (click)="add_root_node()">Create Root Node</button>
-<tree-root [ngClass]="'expand-tree'" [nodes]="nodes" [options]="options" (initialized)="tree_init($event)">
-    <ng-template #treeNodeTemplate let-node let-index="index">
-        <div [hidden]="selected_node == node.data.id">
-            <span [contextMenu]="basicMenu" [contextMenuSubject]="node">{{ node.data.name }}</span>
-        </div>
-        <div *ngIf="selected_node == node.data.id">
-            <input type="text" [(ngModel)]="node.data.name" />
-        </div>                
-    </ng-template>
-    <ng-template #loadingTemplate>Loading, please hold....not sure this works</ng-template>
-</tree-root>
 
 <context-menu>        
+    <ng-template contextMenuItem let-node (execute)="add_root_node()">
+        <i class="fas fa-plus"></i> Create Root Node
+    </ng-template>
     <ng-template contextMenuItem let-node (execute)="add_node($event.item)">
-        Add to {{node.data.name}}
+        <i class="fas fa-plus"></i> Create Node Under ({{node.data.name}})
     </ng-template>
     <ng-template contextMenuItem let-node (execute)="delete_node($event.item)">
-        Delete {{node.data.name}}
+        <i class="fas fa-trash-alt"></i>  Delete ({{node.data.name}})
     </ng-template>
     <ng-template contextMenuItem divider="true"></ng-template>
     <!-- <ng-template contextMenuItem let-node (execute)="showMessage($event.item.name + ' said: ' + $event.item.otherProperty)">

@@ -1,0 +1,6 @@
+export var ContextmenuType;
+(function (ContextmenuType) {
+    ContextmenuType["header"] = "header";
+    ContextmenuType["body"] = "body";
+})(ContextmenuType || (ContextmenuType = {}));
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29udGV4dG1lbnUudHlwZS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0Bzd2ltbGFuZS9uZ3gtZGF0YXRhYmxlLyIsInNvdXJjZXMiOlsibGliL3R5cGVzL2NvbnRleHRtZW51LnR5cGUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsTUFBTSxDQUFOLElBQVksZUFHWDtBQUhELFdBQVksZUFBZTtJQUN6QixvQ0FBaUIsQ0FBQTtJQUNqQixnQ0FBYSxDQUFBO0FBQ2YsQ0FBQyxFQUhXLGVBQWUsS0FBZixlQUFlLFFBRzFCIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGVudW0gQ29udGV4dG1lbnVUeXBlIHtcbiAgaGVhZGVyID0gJ2hlYWRlcicsXG4gIGJvZHkgPSAnYm9keSdcbn1cbiJdfQ==

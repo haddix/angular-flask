@@ -1,0 +1,15 @@
+import { __decorate } from "tslib";
+import { Directive, TemplateRef } from '@angular/core';
+let DataTableColumnHeaderDirective = class DataTableColumnHeaderDirective {
+    constructor(template) {
+        this.template = template;
+    }
+};
+DataTableColumnHeaderDirective.ctorParameters = () => [
+    { type: TemplateRef }
+];
+DataTableColumnHeaderDirective = __decorate([
+    Directive({ selector: '[ngx-datatable-header-template]' })
+], DataTableColumnHeaderDirective);
+export { DataTableColumnHeaderDirective };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29sdW1uLWhlYWRlci5kaXJlY3RpdmUuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9Ac3dpbWxhbmUvbmd4LWRhdGF0YWJsZS8iLCJzb3VyY2VzIjpbImxpYi9jb21wb25lbnRzL2NvbHVtbnMvY29sdW1uLWhlYWRlci5kaXJlY3RpdmUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUFBLE9BQU8sRUFBRSxTQUFTLEVBQUUsV0FBVyxFQUFFLE1BQU0sZUFBZSxDQUFDO0FBR3ZELElBQWEsOEJBQThCLEdBQTNDLE1BQWEsOEJBQThCO0lBQ3pDLFlBQW1CLFFBQTBCO1FBQTFCLGFBQVEsR0FBUixRQUFRLENBQWtCO0lBQUcsQ0FBQztDQUNsRCxDQUFBOztZQUQ4QixXQUFXOztBQUQ3Qiw4QkFBOEI7SUFEMUMsU0FBUyxDQUFDLEVBQUUsUUFBUSxFQUFFLGlDQUFpQyxFQUFFLENBQUM7R0FDOUMsOEJBQThCLENBRTFDO1NBRlksOEJBQThCIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgRGlyZWN0aXZlLCBUZW1wbGF0ZVJlZiB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuXG5ARGlyZWN0aXZlKHsgc2VsZWN0b3I6ICdbbmd4LWRhdGF0YWJsZS1oZWFkZXItdGVtcGxhdGVdJyB9KVxuZXhwb3J0IGNsYXNzIERhdGFUYWJsZUNvbHVtbkhlYWRlckRpcmVjdGl2ZSB7XG4gIGNvbnN0cnVjdG9yKHB1YmxpYyB0ZW1wbGF0ZTogVGVtcGxhdGVSZWY8YW55Pikge31cbn1cbiJdfQ==

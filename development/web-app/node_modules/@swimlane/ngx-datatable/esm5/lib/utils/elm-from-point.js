@@ -1,0 +1,38 @@
+if (typeof document !== 'undefined' && !document.elementsFromPoint) {
+    document.elementsFromPoint = elementsFromPoint;
+}
+/*tslint:disable*/
+/**
+ * Polyfill for `elementsFromPoint`
+ *
+ * https://developer.mozilla.org/en-US/docs/Web/API/Document/elementsFromPoint
+ * https://gist.github.com/iddan/54d5d9e58311b0495a91bf06de661380
+ * https://gist.github.com/oslego/7265412
+ */
+export function elementsFromPoint(x, y) {
+    var elements = [];
+    var previousPointerEvents = [];
+    var current; // TODO: window.getComputedStyle should be used with inferred type (Element)
+    var i;
+    var d;
+    //if (document === undefined) return elements;
+    // get all elements via elementFromPoint, and remove them from hit-testing in order
+    while ((current = document.elementFromPoint(x, y)) && elements.indexOf(current) === -1 && current != null) {
+        // push the element and its current style
+        elements.push(current);
+        previousPointerEvents.push({
+            value: current.style.getPropertyValue('pointer-events'),
+            priority: current.style.getPropertyPriority('pointer-events')
+        });
+        // add "pointer-events: none", to get to the underlying element
+        current.style.setProperty('pointer-events', 'none', 'important');
+    }
+    // restore the previous pointer-events values
+    for (i = previousPointerEvents.length; (d = previousPointerEvents[--i]);) {
+        elements[i].style.setProperty('pointer-events', d.value ? d.value : '', d.priority);
+    }
+    // return our results
+    return elements;
+}
+/*tslint:enable*/
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZWxtLWZyb20tcG9pbnQuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9Ac3dpbWxhbmUvbmd4LWRhdGF0YWJsZS8iLCJzb3VyY2VzIjpbImxpYi91dGlscy9lbG0tZnJvbS1wb2ludC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxJQUFJLE9BQU8sUUFBUSxLQUFLLFdBQVcsSUFBSSxDQUFDLFFBQVEsQ0FBQyxpQkFBaUIsRUFBRTtJQUNsRSxRQUFRLENBQUMsaUJBQWlCLEdBQUcsaUJBQWlCLENBQUM7Q0FDaEQ7QUFFRCxrQkFBa0I7QUFDbEI7Ozs7OztHQU1HO0FBQ0gsTUFBTSxVQUFVLGlCQUFpQixDQUFDLENBQVMsRUFBRSxDQUFTO0lBQ3BELElBQU0sUUFBUSxHQUFHLEVBQUUsQ0FBQztJQUNwQixJQUFNLHFCQUFxQixHQUFHLEVBQUUsQ0FBQztJQUNqQyxJQUFJLE9BQVksQ0FBQyxDQUFDLDRFQUE0RTtJQUM5RixJQUFJLENBQUMsQ0FBQztJQUNOLElBQUksQ0FBQyxDQUFDO0lBRU4sOENBQThDO0lBRTlDLG1GQUFtRjtJQUNuRixPQUFPLENBQUMsT0FBTyxHQUFHLFFBQVEsQ0FBQyxnQkFBZ0IsQ0FBQyxDQUFDLEVBQUUsQ0FBQyxDQUFDLENBQUMsSUFBSSxRQUFRLENBQUMsT0FBTyxDQUFDLE9BQU8sQ0FBQyxLQUFLLENBQUMsQ0FBQyxJQUFJLE9BQU8sSUFBSSxJQUFJLEVBQUU7UUFDekcseUNBQXlDO1FBQ3pDLFFBQVEsQ0FBQyxJQUFJLENBQUMsT0FBTyxDQUFDLENBQUM7UUFDdkIscUJBQXFCLENBQUMsSUFBSSxDQUFDO1lBQ3pCLEtBQUssRUFBRSxPQUFPLENBQUMsS0FBSyxDQUFDLGdCQUFnQixDQUFDLGdCQUFnQixDQUFDO1lBQ3ZELFFBQVEsRUFBRSxPQUFPLENBQUMsS0FBSyxDQUFDLG1CQUFtQixDQUFDLGdCQUFnQixDQUFDO1NBQzlELENBQUMsQ0FBQztRQUVILCtEQUErRDtRQUMvRCxPQUFPLENBQUMsS0FBSyxDQUFDLFdBQVcsQ0FBQyxnQkFBZ0IsRUFBRSxNQUFNLEVBQUUsV0FBVyxDQUFDLENBQUM7S0FDbEU7SUFFRCw2Q0FBNkM7SUFDN0MsS0FBSyxDQUFDLEdBQUcscUJBQXFCLENBQUMsTUFBTSxFQUFFLENBQUMsQ0FBQyxHQUFHLHFCQUFxQixDQUFDLEVBQUUsQ0FBQyxDQUFDLENBQUMsR0FBSTtRQUN6RSxRQUFRLENBQUMsQ0FBQyxDQUFDLENBQUMsS0FBSyxDQUFDLFdBQVcsQ0FBQyxnQkFBZ0IsRUFBRSxDQUFDLENBQUMsS0FBSyxDQUFDLENBQUMsQ0FBQyxDQUFDLENBQUMsS0FBSyxDQUFDLENBQUMsQ0FBQyxFQUFFLEVBQUUsQ0FBQyxDQUFDLFFBQVEsQ0FBQyxDQUFDO0tBQ3JGO0lBRUQscUJBQXFCO0lBQ3JCLE9BQU8sUUFBUSxDQUFDO0FBQ2xCLENBQUM7QUFDRCxpQkFBaUIiLCJzb3VyY2VzQ29udGVudCI6WyJpZiAodHlwZW9mIGRvY3VtZW50ICE9PSAndW5kZWZpbmVkJyAmJiAhZG9jdW1lbnQuZWxlbWVudHNGcm9tUG9pbnQpIHtcbiAgZG9jdW1lbnQuZWxlbWVudHNGcm9tUG9pbnQgPSBlbGVtZW50c0Zyb21Qb2ludDtcbn1cblxuLyp0c2xpbnQ6ZGlzYWJsZSovXG4vKipcbiAqIFBvbHlmaWxsIGZvciBgZWxlbWVudHNGcm9tUG9pbnRgXG4gKlxuICogaHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvZW4tVVMvZG9jcy9XZWIvQVBJL0RvY3VtZW50L2VsZW1lbnRzRnJvbVBvaW50XG4gKiBodHRwczovL2dpc3QuZ2l0aHViLmNvbS9pZGRhbi81NGQ1ZDllNTgzMTFiMDQ5NWE5MWJmMDZkZTY2MTM4MFxuICogaHR0cHM6Ly9naXN0LmdpdGh1Yi5jb20vb3NsZWdvLzcyNjU0MTJcbiAqL1xuZXhwb3J0IGZ1bmN0aW9uIGVsZW1lbnRzRnJvbVBvaW50KHg6IG51bWJlciwgeTogbnVtYmVyKSB7XG4gIGNvbnN0IGVsZW1lbnRzID0gW107XG4gIGNvbnN0IHByZXZpb3VzUG9pbnRlckV2ZW50cyA9IFtdO1xuICBsZXQgY3VycmVudDogYW55OyAvLyBUT0RPOiB3aW5kb3cuZ2V0Q29tcHV0ZWRTdHlsZSBzaG91bGQgYmUgdXNlZCB3aXRoIGluZmVycmVkIHR5cGUgKEVsZW1lbnQpXG4gIGxldCBpO1xuICBsZXQgZDtcblxuICAvL2lmIChkb2N1bWVudCA9PT0gdW5kZWZpbmVkKSByZXR1cm4gZWxlbWVudHM7XG5cbiAgLy8gZ2V0IGFsbCBlbGVtZW50cyB2aWEgZWxlbWVudEZyb21Qb2ludCwgYW5kIHJlbW92ZSB0aGVtIGZyb20gaGl0LXRlc3RpbmcgaW4gb3JkZXJcbiAgd2hpbGUgKChjdXJyZW50ID0gZG9jdW1lbnQuZWxlbWVudEZyb21Qb2ludCh4LCB5KSkgJiYgZWxlbWVudHMuaW5kZXhPZihjdXJyZW50KSA9PT0gLTEgJiYgY3VycmVudCAhPSBudWxsKSB7XG4gICAgLy8gcHVzaCB0aGUgZWxlbWVudCBhbmQgaXRzIGN1cnJlbnQgc3R5bGVcbiAgICBlbGVtZW50cy5wdXNoKGN1cnJlbnQpO1xuICAgIHByZXZpb3VzUG9pbnRlckV2ZW50cy5wdXNoKHtcbiAgICAgIHZhbHVlOiBjdXJyZW50LnN0eWxlLmdldFByb3BlcnR5VmFsdWUoJ3BvaW50ZXItZXZlbnRzJyksXG4gICAgICBwcmlvcml0eTogY3VycmVudC5zdHlsZS5nZXRQcm9wZXJ0eVByaW9yaXR5KCdwb2ludGVyLWV2ZW50cycpXG4gICAgfSk7XG5cbiAgICAvLyBhZGQgXCJwb2ludGVyLWV2ZW50czogbm9uZVwiLCB0byBnZXQgdG8gdGhlIHVuZGVybHlpbmcgZWxlbWVudFxuICAgIGN1cnJlbnQuc3R5bGUuc2V0UHJvcGVydHkoJ3BvaW50ZXItZXZlbnRzJywgJ25vbmUnLCAnaW1wb3J0YW50Jyk7XG4gIH1cblxuICAvLyByZXN0b3JlIHRoZSBwcmV2aW91cyBwb2ludGVyLWV2ZW50cyB2YWx1ZXNcbiAgZm9yIChpID0gcHJldmlvdXNQb2ludGVyRXZlbnRzLmxlbmd0aDsgKGQgPSBwcmV2aW91c1BvaW50ZXJFdmVudHNbLS1pXSk7ICkge1xuICAgIGVsZW1lbnRzW2ldLnN0eWxlLnNldFByb3BlcnR5KCdwb2ludGVyLWV2ZW50cycsIGQudmFsdWUgPyBkLnZhbHVlIDogJycsIGQucHJpb3JpdHkpO1xuICB9XG5cbiAgLy8gcmV0dXJuIG91ciByZXN1bHRzXG4gIHJldHVybiBlbGVtZW50cztcbn1cbi8qdHNsaW50OmVuYWJsZSovXG4iXX0=

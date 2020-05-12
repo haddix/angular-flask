@@ -1,0 +1,17 @@
+import { __decorate } from "tslib";
+import { Directive, TemplateRef } from '@angular/core';
+let DatatableRowDetailTemplateDirective = class DatatableRowDetailTemplateDirective {
+    constructor(template) {
+        this.template = template;
+    }
+};
+DatatableRowDetailTemplateDirective.ctorParameters = () => [
+    { type: TemplateRef }
+];
+DatatableRowDetailTemplateDirective = __decorate([
+    Directive({
+        selector: '[ngx-datatable-row-detail-template]'
+    })
+], DatatableRowDetailTemplateDirective);
+export { DatatableRowDetailTemplateDirective };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicm93LWRldGFpbC10ZW1wbGF0ZS5kaXJlY3RpdmUuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9Ac3dpbWxhbmUvbmd4LWRhdGF0YWJsZS8iLCJzb3VyY2VzIjpbImxpYi9jb21wb25lbnRzL3Jvdy1kZXRhaWwvcm93LWRldGFpbC10ZW1wbGF0ZS5kaXJlY3RpdmUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUFBLE9BQU8sRUFBRSxTQUFTLEVBQUUsV0FBVyxFQUFFLE1BQU0sZUFBZSxDQUFDO0FBS3ZELElBQWEsbUNBQW1DLEdBQWhELE1BQWEsbUNBQW1DO0lBQzlDLFlBQW1CLFFBQTBCO1FBQTFCLGFBQVEsR0FBUixRQUFRLENBQWtCO0lBQUcsQ0FBQztDQUNsRCxDQUFBOztZQUQ4QixXQUFXOztBQUQ3QixtQ0FBbUM7SUFIL0MsU0FBUyxDQUFDO1FBQ1QsUUFBUSxFQUFFLHFDQUFxQztLQUNoRCxDQUFDO0dBQ1csbUNBQW1DLENBRS9DO1NBRlksbUNBQW1DIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgRGlyZWN0aXZlLCBUZW1wbGF0ZVJlZiB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuXG5ARGlyZWN0aXZlKHtcbiAgc2VsZWN0b3I6ICdbbmd4LWRhdGF0YWJsZS1yb3ctZGV0YWlsLXRlbXBsYXRlXSdcbn0pXG5leHBvcnQgY2xhc3MgRGF0YXRhYmxlUm93RGV0YWlsVGVtcGxhdGVEaXJlY3RpdmUge1xuICBjb25zdHJ1Y3RvcihwdWJsaWMgdGVtcGxhdGU6IFRlbXBsYXRlUmVmPGFueT4pIHt9XG59XG4iXX0=

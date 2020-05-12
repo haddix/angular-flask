@@ -1,0 +1,15 @@
+import { __decorate } from "tslib";
+import { Directive, TemplateRef } from '@angular/core';
+let DataTableColumnCellTreeToggle = class DataTableColumnCellTreeToggle {
+    constructor(template) {
+        this.template = template;
+    }
+};
+DataTableColumnCellTreeToggle.ctorParameters = () => [
+    { type: TemplateRef }
+];
+DataTableColumnCellTreeToggle = __decorate([
+    Directive({ selector: '[ngx-datatable-tree-toggle]' })
+], DataTableColumnCellTreeToggle);
+export { DataTableColumnCellTreeToggle };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidHJlZS5kaXJlY3RpdmUuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9Ac3dpbWxhbmUvbmd4LWRhdGF0YWJsZS8iLCJzb3VyY2VzIjpbImxpYi9jb21wb25lbnRzL2NvbHVtbnMvdHJlZS5kaXJlY3RpdmUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUFBLE9BQU8sRUFBRSxTQUFTLEVBQUUsV0FBVyxFQUFFLE1BQU0sZUFBZSxDQUFDO0FBR3ZELElBQWEsNkJBQTZCLEdBQTFDLE1BQWEsNkJBQTZCO0lBQ3hDLFlBQW1CLFFBQTBCO1FBQTFCLGFBQVEsR0FBUixRQUFRLENBQWtCO0lBQUcsQ0FBQztDQUNsRCxDQUFBOztZQUQ4QixXQUFXOztBQUQ3Qiw2QkFBNkI7SUFEekMsU0FBUyxDQUFDLEVBQUUsUUFBUSxFQUFFLDZCQUE2QixFQUFFLENBQUM7R0FDMUMsNkJBQTZCLENBRXpDO1NBRlksNkJBQTZCIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgRGlyZWN0aXZlLCBUZW1wbGF0ZVJlZiB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuXG5ARGlyZWN0aXZlKHsgc2VsZWN0b3I6ICdbbmd4LWRhdGF0YWJsZS10cmVlLXRvZ2dsZV0nIH0pXG5leHBvcnQgY2xhc3MgRGF0YVRhYmxlQ29sdW1uQ2VsbFRyZWVUb2dnbGUge1xuICBjb25zdHJ1Y3RvcihwdWJsaWMgdGVtcGxhdGU6IFRlbXBsYXRlUmVmPGFueT4pIHt9XG59XG4iXX0=

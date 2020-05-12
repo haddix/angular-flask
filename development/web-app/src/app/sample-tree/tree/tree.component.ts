@@ -18,22 +18,22 @@ export class TreeComponent implements OnInit {
   nodes = [
     {
       id: 1,
-      name: 'root1',
+      name: 'Army',
       children: [
-        { id: 2, name: 'child1' },
-        { id: 3, name: 'child2' }
+        { id: 2, name: 'Regiment 1' },
+        { id: 3, name: 'Regiment 2' }
       ]
     },
     {
       id: 4,
-      name: 'root2',
+      name: 'Navy',
       children: [
-        { id: 5, name: 'child2.1' },
+        { id: 5, name: 'Fleet 1' },
         {
           id: 6,
-          name: 'child2.2',
+          name: 'Fleet 2',
           children: [
-            { id: 7, name: 'subsub' }
+            { id: 7, name: 'Division 1' }
           ]
         }
       ]
@@ -50,9 +50,11 @@ export class TreeComponent implements OnInit {
         dblClick: (model: any, node: any, event: any) => {
           if(this.selected_node == ""){
             this.selected_node = node.data.id;
+            this.options.allowDrag = false;
           }
           else{
             this.selected_node = "";
+            this.options.allowDrag = true;
           }
             
           console.log(node.data.id);
@@ -111,6 +113,9 @@ export class TreeComponent implements OnInit {
   
   add_node(node) {
     console.log(node);
+    if(!node.data.children){
+      node.data["children"] = [];
+    }
     node.data.children.push({
       id: uuid(),
       name: 'new item',

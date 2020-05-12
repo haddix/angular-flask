@@ -1,0 +1,15 @@
+import { __decorate } from "tslib";
+import { Directive, TemplateRef } from '@angular/core';
+let DataTableFooterTemplateDirective = class DataTableFooterTemplateDirective {
+    constructor(template) {
+        this.template = template;
+    }
+};
+DataTableFooterTemplateDirective.ctorParameters = () => [
+    { type: TemplateRef }
+];
+DataTableFooterTemplateDirective = __decorate([
+    Directive({ selector: '[ngx-datatable-footer-template]' })
+], DataTableFooterTemplateDirective);
+export { DataTableFooterTemplateDirective };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZm9vdGVyLXRlbXBsYXRlLmRpcmVjdGl2ZS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0Bzd2ltbGFuZS9uZ3gtZGF0YXRhYmxlLyIsInNvdXJjZXMiOlsibGliL2NvbXBvbmVudHMvZm9vdGVyL2Zvb3Rlci10ZW1wbGF0ZS5kaXJlY3RpdmUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUFBLE9BQU8sRUFBRSxTQUFTLEVBQUUsV0FBVyxFQUFFLE1BQU0sZUFBZSxDQUFDO0FBR3ZELElBQWEsZ0NBQWdDLEdBQTdDLE1BQWEsZ0NBQWdDO0lBQzNDLFlBQW1CLFFBQTBCO1FBQTFCLGFBQVEsR0FBUixRQUFRLENBQWtCO0lBQUcsQ0FBQztDQUNsRCxDQUFBOztZQUQ4QixXQUFXOztBQUQ3QixnQ0FBZ0M7SUFENUMsU0FBUyxDQUFDLEVBQUUsUUFBUSxFQUFFLGlDQUFpQyxFQUFFLENBQUM7R0FDOUMsZ0NBQWdDLENBRTVDO1NBRlksZ0NBQWdDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgRGlyZWN0aXZlLCBUZW1wbGF0ZVJlZiB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuXG5ARGlyZWN0aXZlKHsgc2VsZWN0b3I6ICdbbmd4LWRhdGF0YWJsZS1mb290ZXItdGVtcGxhdGVdJyB9KVxuZXhwb3J0IGNsYXNzIERhdGFUYWJsZUZvb3RlclRlbXBsYXRlRGlyZWN0aXZlIHtcbiAgY29uc3RydWN0b3IocHVibGljIHRlbXBsYXRlOiBUZW1wbGF0ZVJlZjxhbnk+KSB7fVxufVxuIl19

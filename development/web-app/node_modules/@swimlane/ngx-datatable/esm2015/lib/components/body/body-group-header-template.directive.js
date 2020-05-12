@@ -1,0 +1,17 @@
+import { __decorate } from "tslib";
+import { Directive, TemplateRef } from '@angular/core';
+let DatatableGroupHeaderTemplateDirective = class DatatableGroupHeaderTemplateDirective {
+    constructor(template) {
+        this.template = template;
+    }
+};
+DatatableGroupHeaderTemplateDirective.ctorParameters = () => [
+    { type: TemplateRef }
+];
+DatatableGroupHeaderTemplateDirective = __decorate([
+    Directive({
+        selector: '[ngx-datatable-group-header-template]'
+    })
+], DatatableGroupHeaderTemplateDirective);
+export { DatatableGroupHeaderTemplateDirective };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYm9keS1ncm91cC1oZWFkZXItdGVtcGxhdGUuZGlyZWN0aXZlLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQHN3aW1sYW5lL25neC1kYXRhdGFibGUvIiwic291cmNlcyI6WyJsaWIvY29tcG9uZW50cy9ib2R5L2JvZHktZ3JvdXAtaGVhZGVyLXRlbXBsYXRlLmRpcmVjdGl2ZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQUEsT0FBTyxFQUFFLFNBQVMsRUFBRSxXQUFXLEVBQUUsTUFBTSxlQUFlLENBQUM7QUFLdkQsSUFBYSxxQ0FBcUMsR0FBbEQsTUFBYSxxQ0FBcUM7SUFDaEQsWUFBbUIsUUFBMEI7UUFBMUIsYUFBUSxHQUFSLFFBQVEsQ0FBa0I7SUFBRyxDQUFDO0NBQ2xELENBQUE7O1lBRDhCLFdBQVc7O0FBRDdCLHFDQUFxQztJQUhqRCxTQUFTLENBQUM7UUFDVCxRQUFRLEVBQUUsdUNBQXVDO0tBQ2xELENBQUM7R0FDVyxxQ0FBcUMsQ0FFakQ7U0FGWSxxQ0FBcUMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBEaXJlY3RpdmUsIFRlbXBsYXRlUmVmIH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5cbkBEaXJlY3RpdmUoe1xuICBzZWxlY3RvcjogJ1tuZ3gtZGF0YXRhYmxlLWdyb3VwLWhlYWRlci10ZW1wbGF0ZV0nXG59KVxuZXhwb3J0IGNsYXNzIERhdGF0YWJsZUdyb3VwSGVhZGVyVGVtcGxhdGVEaXJlY3RpdmUge1xuICBjb25zdHJ1Y3RvcihwdWJsaWMgdGVtcGxhdGU6IFRlbXBsYXRlUmVmPGFueT4pIHt9XG59XG4iXX0=

@@ -1,0 +1,6 @@
+export var SortDirection;
+(function (SortDirection) {
+    SortDirection["asc"] = "asc";
+    SortDirection["desc"] = "desc";
+})(SortDirection || (SortDirection = {}));
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic29ydC1kaXJlY3Rpb24udHlwZS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0Bzd2ltbGFuZS9uZ3gtZGF0YXRhYmxlLyIsInNvdXJjZXMiOlsibGliL3R5cGVzL3NvcnQtZGlyZWN0aW9uLnR5cGUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsTUFBTSxDQUFOLElBQVksYUFHWDtBQUhELFdBQVksYUFBYTtJQUN2Qiw0QkFBVyxDQUFBO0lBQ1gsOEJBQWEsQ0FBQTtBQUNmLENBQUMsRUFIVyxhQUFhLEtBQWIsYUFBYSxRQUd4QiIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBlbnVtIFNvcnREaXJlY3Rpb24ge1xuICBhc2MgPSAnYXNjJyxcbiAgZGVzYyA9ICdkZXNjJ1xufVxuIl19

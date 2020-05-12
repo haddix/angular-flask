@@ -1,0 +1,15 @@
+import { __decorate } from "tslib";
+import { Directive, TemplateRef } from '@angular/core';
+let DataTableColumnCellDirective = class DataTableColumnCellDirective {
+    constructor(template) {
+        this.template = template;
+    }
+};
+DataTableColumnCellDirective.ctorParameters = () => [
+    { type: TemplateRef }
+];
+DataTableColumnCellDirective = __decorate([
+    Directive({ selector: '[ngx-datatable-cell-template]' })
+], DataTableColumnCellDirective);
+export { DataTableColumnCellDirective };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29sdW1uLWNlbGwuZGlyZWN0aXZlLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQHN3aW1sYW5lL25neC1kYXRhdGFibGUvIiwic291cmNlcyI6WyJsaWIvY29tcG9uZW50cy9jb2x1bW5zL2NvbHVtbi1jZWxsLmRpcmVjdGl2ZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQUEsT0FBTyxFQUFFLFNBQVMsRUFBRSxXQUFXLEVBQUUsTUFBTSxlQUFlLENBQUM7QUFHdkQsSUFBYSw0QkFBNEIsR0FBekMsTUFBYSw0QkFBNEI7SUFDdkMsWUFBbUIsUUFBMEI7UUFBMUIsYUFBUSxHQUFSLFFBQVEsQ0FBa0I7SUFBRyxDQUFDO0NBQ2xELENBQUE7O1lBRDhCLFdBQVc7O0FBRDdCLDRCQUE0QjtJQUR4QyxTQUFTLENBQUMsRUFBRSxRQUFRLEVBQUUsK0JBQStCLEVBQUUsQ0FBQztHQUM1Qyw0QkFBNEIsQ0FFeEM7U0FGWSw0QkFBNEIiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBEaXJlY3RpdmUsIFRlbXBsYXRlUmVmIH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5cbkBEaXJlY3RpdmUoeyBzZWxlY3RvcjogJ1tuZ3gtZGF0YXRhYmxlLWNlbGwtdGVtcGxhdGVdJyB9KVxuZXhwb3J0IGNsYXNzIERhdGFUYWJsZUNvbHVtbkNlbGxEaXJlY3RpdmUge1xuICBjb25zdHJ1Y3RvcihwdWJsaWMgdGVtcGxhdGU6IFRlbXBsYXRlUmVmPGFueT4pIHt9XG59XG4iXX0=

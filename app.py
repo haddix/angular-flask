@@ -1,19 +1,22 @@
 from flask_cors import CORS
 from flask import Flask, jsonify, send_from_directory
 from src import map
+from src import table
 app = Flask(__name__)
 CORS(app)
 
 
 @app.route('/angular-flask/get_map')
 def get_map():
-    locations = {'locations':
-             [
-                 {"name": "jason", "coords":[41.141649, -96.226552]},
-                 {"name": "anthony", "coords": [41.141649, -96.226552]},
-                 {"name": "caleb", "coords": [41.141649, -96.226552]}
-             ]}
+
     return jsonify(map.get_map_data())
+
+
+@app.route('/angular-flask/get_table')
+def get_table():
+
+    return jsonify(table.get_table())
+
 
 @app.route('/angular-flask/get_people')
 def get_people():
