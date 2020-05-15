@@ -1,4 +1,6 @@
-import { Component, OnInit, Input,OnChanges } from '@angular/core';
+import { Component, ViewChild, Input,OnChanges } from '@angular/core';
+import { DatatableComponent } from '@swimlane/ngx-datatable';
+
 
 @Component({
   selector: 'app-table',
@@ -9,15 +11,35 @@ import { Component, OnInit, Input,OnChanges } from '@angular/core';
 export class TableComponent implements OnChanges {
   
   @Input() table_data;
+  @Input() columns;
 
   rows = [];
-  columns = [];
+  temp = [];
+  @ViewChild(DatatableComponent) table: DatatableComponent;
+  loadingIndicator = true;
+  reorderable = true;
   
   constructor() { }
 
   ngOnChanges() { 
-    this.rows = this.table_data.rows;
-    this.columns = this.table_data.columns;
+    this.rows = this.table_data;
+    this.columns = [{ prop: 'name' }, { name: 'Company' }, { name: 'Gender' }];
+    this.temp = this.table_data;
+    this.loadingIndicator = false;
+  }
+
+  updateFilter(event) {
+    const val = event.target.value.toLowerCase();
+
+    // filter our data
+    const temp = this.temp.filter(function (d) {
+      return d.name.toLowerCase().indexOf(val) !== -1 || !val;
+    });
+
+    // update the rows
+    this.rows = temp;
+    // Whenever the filter changes, always go back to the first page
+    this.table.offset = 0;
   }
 
 

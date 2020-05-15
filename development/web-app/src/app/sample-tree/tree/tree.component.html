@@ -1,21 +1,14 @@
-<div class="card">
-    <div class="card-header">
-        Tree Hierarchy
-    </div>
-    <div class="card-body">
-        <tree-root [ngClass]="'expand-tree'" [nodes]="nodes" [options]="options" (initialized)="tree_init($event)">
-            <ng-template #treeNodeTemplate let-node let-index="index">
-                <div [hidden]="selected_node == node.data.id">
-                    <span [contextMenu]="basicMenu" [contextMenuSubject]="node">{{ node.data.name }}</span>
-                </div>
-                <div *ngIf="selected_node == node.data.id">
-                    <input type="text" [(ngModel)]="node.data.name" />
-                </div>                
-            </ng-template>
-            <ng-template #loadingTemplate>Loading, please hold....not sure this works</ng-template>
-        </tree-root>
-    </div>
-</div>
+<tree-root [ngClass]="'expand-tree'" [nodes]="nodes" [options]="options" (initialized)="tree_init($event)">
+    <ng-template #treeNodeTemplate let-node let-index="index">
+        <div [hidden]="selected_node == node.data.id">
+            <span [contextMenu]="basicMenu" [contextMenuSubject]="node">{{ node.data.name }}</span>
+        </div>
+        <div *ngIf="selected_node == node.data.id">
+            <input type="text" [(ngModel)]="node.data.name" />
+        </div>                
+    </ng-template>
+    <ng-template #loadingTemplate>Loading, please hold....not sure this works</ng-template>
+</tree-root>
 
 
 <context-menu>        
