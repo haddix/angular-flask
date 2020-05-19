@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import {GraphService, GraphData} from '../core/services/graphs.service';
+
 
 @Component({
   selector: 'app-sample-graphs',
@@ -7,7 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SampleGraphsComponent implements OnInit {
 
-  constructor() { }
+  graph_data$: Observable<GraphData>;
+  
+  constructor(map_svc:GraphService) { 
+    this.graph_data$ = map_svc.getGraphData();
+  }
 
   ngOnInit(): void {
   }

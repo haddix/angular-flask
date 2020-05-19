@@ -1,1 +1,16 @@
-<p>sample-graphs works!</p>
+<div class="card">
+    <div class="card-header">
+        ngx-charts <a href="https://swimlane.gitbook.io/ngx-charts" target="_blank">https://swimlane.gitbook.io/ngx-charts</a>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <app-graphs [graph_data]="graph_data$ | async" [graph_type]="'pie'"></app-graphs>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </div>
+</div>
