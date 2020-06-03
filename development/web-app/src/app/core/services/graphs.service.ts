@@ -14,7 +14,7 @@ export class GraphService {
 
   constructor(private http: HttpClient) { }
 
-  getGraphData(): Observable<GraphData>{    
-    return this.http.get<GraphData>('http://0.0.0.0:5000/angular-flask/get_graphs?graph_type=pie');
+  getGraphData(graph_type): Observable<GraphData>{    
+    return this.http.get<GraphData>('http://0.0.0.0:5000/angular-flask/get_graphs?graph_type=' + graph_type);
   }
 }

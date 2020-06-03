@@ -10,10 +10,13 @@ import {GraphService, GraphData} from '../core/services/graphs.service';
 })
 export class SampleGraphsComponent implements OnInit {
 
-  graph_data$: Observable<GraphData>;
+  pie_data: Observable<GraphData>;
+  multi_data: Observable<GraphData>;
   
   constructor(map_svc:GraphService) { 
-    this.graph_data$ = map_svc.getGraphData();
+    this.pie_data = map_svc.getGraphData("pie");
+    this.multi_data = map_svc.getGraphData("multi");
+    // this.multi_data = map_svc.getGraphData("timneline");
   }
 
   ngOnInit(): void {

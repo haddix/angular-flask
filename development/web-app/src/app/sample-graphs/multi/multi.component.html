@@ -1,0 +1,15 @@
+<div [style.height]="graph_height + 'px'">
+    <ngx-charts-area-chart-stacked
+    [scheme]="colorScheme"
+    [legend]="legend"
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel"
+    [xAxis]="xAxis"
+    [yAxis]="yAxis"
+    [xAxisLabel]="xAxisLabel"
+    [yAxisLabel]="yAxisLabel"
+    [timeline]="timeline"
+    [results]="graph_data"
+    (select)="onSelect($event)">
+    </ngx-charts-area-chart-stacked>
+</div>

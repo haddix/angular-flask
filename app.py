@@ -3,6 +3,7 @@ from flask import Flask, jsonify, send_from_directory, request
 from src import map
 from src import table
 from src import graph
+from src import search
 app = Flask(__name__)
 CORS(app)
 
@@ -25,19 +26,18 @@ def get_graphs():
         req = request.values
     else:
         req = request.args
-    print req.get("graph_type")
     return jsonify(graph.get_graphs(req.get("graph_type")))
 
 
-@app.route('/angular-flask/get_people')
-def get_people():
-    people = {"people": [
-        {'name': 'fred', 'age': 10},
-        {'name': 'john', 'age': 20},
-        {'name': 'paul', 'age': 30},
-        {'name': 'greg', 'age': 40},
-    ]}
-    return jsonify(people)
+@app.route('/angular-flask/do_search', methods=['GET', 'POST'])
+def do_search():
+
+    if request.method == 'POST':
+        req = request.values
+    else:
+        req = request.args
+    terms = req.get("terms")
+    return jsonify(search.do_search(terms))
 
 
 

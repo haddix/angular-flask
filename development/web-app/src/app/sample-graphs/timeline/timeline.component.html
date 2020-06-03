@@ -1,0 +1,17 @@
+<ngx-charts-line-chart
+    [view]="view"
+    [scheme]="colorScheme"
+    [results]="multi"
+    [gradient]="gradient"
+    [xAxis]="showXAxis"
+    [yAxis]="showYAxis"
+    [legend]="showLegend"
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel"
+    [xAxisLabel]="xAxisLabel"
+    [yAxisLabel]="yAxisLabel"
+    [autoScale]="autoScale"
+    [timeline]="timeline"
+    (select)="onSelect($event)">
+</ngx-charts-line-chart>
+<button (click)=toggleData()>Toggle Data</button>
