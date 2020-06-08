@@ -5,8 +5,22 @@ from src import table
 from src import graph
 from src import search
 from src import movie_graphs
+from src import user
 app = Flask(__name__)
 CORS(app)
+
+
+def get_credentials():
+    user_obj = {
+        "dn":"NOT SSL USER",
+        "cn":"NOT SSL USER"
+    }
+    return user_obj
+
+
+@app.route('/angular-flask/get_user')
+def get_user():
+    return jsonify(user.get_user(get_credentials()))
 
 
 @app.route('/angular-flask/get_map')
