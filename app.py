@@ -4,6 +4,7 @@ from src import map
 from src import table
 from src import graph
 from src import search
+from src import movie_graphs
 app = Flask(__name__)
 CORS(app)
 
@@ -38,6 +39,17 @@ def do_search():
         req = request.args
     terms = req.get("terms")
     return jsonify(search.do_search(terms))
+
+
+@app.route('/angular-flask/movie_graphs', methods=['GET', 'POST'])
+def get_movie_graphs():
+
+    if request.method == 'POST':
+        req = request.values
+    else:
+        req = request.args
+    search_terms = req.get("search_terms")
+    return jsonify(movie_graphs.get_graphs(search_terms))
 
 
 

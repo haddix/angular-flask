@@ -1,0 +1,14 @@
+<div [style.height]="graph_height + 'px'">
+    <ngx-charts-pie-chart
+    [scheme]="colorScheme"
+    [results]="graph_data?.data"
+    [legend]="showLegend"
+    [legendPosition]="legendPosition"
+    [labels]="showLabels"
+    (select)="onSelect($event)"
+    (activate)="onActivate($event)"
+    (deactivate)="onDeactivate($event)"
+    (window:resize)="onResize($event)"  
+    >
+    </ngx-charts-pie-chart>
+</div>
