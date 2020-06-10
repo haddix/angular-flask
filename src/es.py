@@ -5,15 +5,60 @@ from pprint import pprint
 
 es = Elasticsearch()
 
-filepath = '../../imdb/movies.json'
-with open(filepath) as f:
-    content = f.readlines()
-    for line in content:
-        j = json.loads(line)
-        print(j)
+settings = {
+  "settings": {
+     "index" : {
+        "analysis" : {
+            "analyzer" : {
+                "synonym" : {
+                    "tokenizer" : "whitespace",
+                    "filter" : ["synonym"]
+                }
+            },
+            "filter" : {
+                "synonym" : {
+                    "type" : "synonym",
+                    "format" : "wordnet",
+                    "synonyms_path" : "analysis/wn_s.pl"
+                }
+            }
+        }
+     }
+  }
+}
+#delete indexes first if they exist
+try:
+    es.indices.delete(index='movies', ignore=[400, 404])
+    print("deleted movies")
+    es.indices.delete(index='movies-ratings', ignore=[400, 404])
+    print("deleted movies-ratings")
+    es.indices.delete(index='movies-taglines', ignore=[400, 404])
+    print("deleted movies-taglines")
+    es.indices.delete(index='users', ignore=[400, 404])
+    print("deleted users")
+except Exception as e:
+    print (e)
 
-        res = es.index(index="movies", body=j)
-        print(res['result'])
+#create indexes
+es.indices.create(index='movies', body=settings)
+print ("created movies")
+es.indices.create(index='movies-taglines', body=settings)
+print ("created movies")
+es.indices.create(index='movies-ratings')
+print ("created movies")
+es.indices.create(index='users')
+print ("created movies")
+
+
+# filepath = '../../imdb/movies.json'
+# with open(filepath) as f:
+#     content = f.readlines()
+#     for line in content:
+#         j = json.loads(line)
+#         print(j)
+#
+#         res = es.index(index="movies", body=j)
+#         print(res['result'])
 
         # res = es.get(index="test-index", id=1)
         # print(res['_source'])

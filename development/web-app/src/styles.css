@@ -9,6 +9,10 @@ body {
   background-color: #ccc;
 }
 
+mark{
+  background:pink;
+}
+
 /*
   * Content
   */
