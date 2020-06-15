@@ -15,7 +15,7 @@ export class MovieTypesComponent implements OnChanges {
 
   // options
   gradient: boolean = true;
-  showLegend: boolean = true;
+  showLegend: boolean = false;
   showLabels: boolean = true;
   isDoughnut: boolean = false;
   legendPosition: string = 'left';
@@ -46,7 +46,6 @@ export class MovieTypesComponent implements OnChanges {
 
   ngOnChanges(): void {
     Object.assign(this, this.graph_data?.data);
-    console.log(this.graph_data?.data);
   }
 
 }

@@ -6,6 +6,11 @@ from src import graph
 from src import search
 from src import movie_graphs
 from src import user
+
+from random import seed
+from random import random
+# seed random number generator
+seed(1)
 app = Flask(__name__)
 CORS(app)
 
@@ -21,6 +26,14 @@ def get_credentials():
 @app.route('/angular-flask/get_user')
 def get_user():
     return jsonify(user.get_user(get_credentials()))
+
+@app.route('/angular-flask/set_user_favorites', methods=['GET', 'POST'])
+def set_user_favorites():
+    if request.method == 'POST':
+        req = request.values
+    else:
+        req = request.args
+    return jsonify(user.set_user_favorites(get_credentials(), req.get("movie")))
 
 
 @app.route('/angular-flask/get_map')

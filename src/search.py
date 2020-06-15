@@ -14,7 +14,7 @@ def do_search(terms):
                 "bool": {
                   "should": [
                       {
-                          "match": {
+                          "match_phrase": {
                               "title": {
                                   "query": terms
                               }
@@ -44,7 +44,8 @@ def do_search(terms):
                 "pre_tags": ["<mark>"],
                 "post_tags": ["</mark>"],
                 "fields": {
-                  "taglines": {}
+                  "taglines": {},
+                    "title":{}
                 },
                 "require_field_match" : False
               }
@@ -52,11 +53,14 @@ def do_search(terms):
 
     res = es.search(index="movies-taglines", body=query)
     result = res
+
     for item in result["hits"]["hits"]:
         for highlight in item["highlight"]["taglines"]:
             tl = highlight.replace("<mark>", "").replace("</mark>", "")
             taglines = item["_source"]["taglines"]
             item["_source"]["taglines"] = [tagline.replace(tl, highlight) for tagline in taglines]
+        if "title" in item["highlight"]:
+         item["_source"]["title"] = item["highlight"]["title"][0]
 
         del item["highlight"]
 

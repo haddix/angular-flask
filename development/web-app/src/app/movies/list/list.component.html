@@ -1,10 +1,9 @@
 <div class="list-group">
     <a class="list-group-item list-group-item-action" *ngFor="let item of (search_data)?.hits.hits">
       <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1">{{item._source.title}} (<small>{{item._source.kind}}</small>)</h5>        
-        <span class="far fa-star"></span>
+        <h5 class="mb-1"><span class="mb-1" [innerHTML]="item._source.title"></span>(<small>{{item._source.kind}}</small>)</h5>        
+        <span class="far fa-star" (click)="set_movie(item._source)"></span>
       </div>
-      <p class="mb-1" [innerHTML]="item._source.taglines">
-      </p>
+      <p class="mb-1" [innerHTML]="item._source.taglines"></p>
     </a>           
 </div>

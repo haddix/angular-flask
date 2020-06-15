@@ -8,6 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { GraphsComponent } from './graphs/graphs.component';
 import { MovieTypesComponent } from './graphs/movie-types/movie-types.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { FavoritesComponent } from './favorites/favorites.component';
+import {SharedModule} from '../shared/shared.module';
 
 
 const moviesRoutes: Routes = [
@@ -15,12 +17,13 @@ const moviesRoutes: Routes = [
 ]
 
 @NgModule({
-  declarations: [MoviesComponent, SearchComponent, ListComponent, GraphsComponent, MovieTypesComponent],
+  declarations: [MoviesComponent, SearchComponent, ListComponent, GraphsComponent, MovieTypesComponent, FavoritesComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(moviesRoutes),
     FormsModule,
-    NgxChartsModule
+    NgxChartsModule,
+    SharedModule
   ]
 })
 export class MoviesModule { 
