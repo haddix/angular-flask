@@ -1,0 +1,58 @@
+<div style="width: fit-content;margin: auto;">  
+  <button type="button" class="btn btn-primary btn-sm" (click)="open_modal(template)">Add Item</button>  
+</div>  
+     
+<ng-template #template>  
+  <div class="modal-header">  
+    <h4 class="modal-title pull-left">Add a New Item</h4>  
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">  
+      <span aria-hidden="true">×</span>  
+    </button>  
+  </div>  
+  <div class="modal-body">  
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <input type="text" formControlName="title" class="form-control" [(ngModel)]="new_item.title"
+                [ngClass]="{ 'is-invalid': submitted && f.title.errors, 'valid-state': (f.title.value!=null && f.title.value!='') }" />
+            <label for="title">Title</label>
+            <div class="validator-feedback">
+                <div *ngIf="submitted && f.title.errors && f.title.errors.required">Title is
+                    required</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input type="text" formControlName="taglines" class="form-control" [(ngModel)]="new_item.taglines"
+                [ngClass]="{ 'is-invalid': submitted && f.taglines.errors, 'valid-state': (f.taglines.value!=null && f.taglines.value!='') }" />
+            <label for="taglines">Tagline</label>
+            <div class="validator-feedback">
+                <div *ngIf="submitted && f.taglines.errors && f.taglines.errors.required">Tagline is
+                    required</div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <fieldset>
+                <legend>Kind</legend>
+                <input type="radio" id="movie" value="movie" formControlName="kind" [(ngModel)]="new_item.kind">
+                <label for="male"> movie </label>
+                <input type="radio" id="tv-movie" value="tv-movie" formControlName="kind" [(ngModel)]="new_item.kind">
+                <label for="female"> tv-movie </label>
+                <input type="radio" id="series" value="series" formControlName="kind" [(ngModel)]="new_item.kind">
+                <label for="male"> series </label>
+                <input type="radio" id="video" value="video" formControlName="kind" [(ngModel)]="new_item.kind">
+                <label for="male"> video </label>
+                <input type="radio" id="videogame" value="videogame" formControlName="kind" [(ngModel)]="new_item.kind">
+                <label for="male"> videogame </label>
+                <div *ngIf="submitted && f.kind.errors" class="validator-feedback-fieldset">
+                    <div *ngIf="f.kind.errors.required">Choose One</div>
+                </div> 
+            </fieldset>                                               
+        </div>
+    </form>
+  </div>  
+  <div class="modal-footer">  
+    <button class="btn btn-primary mr-1" (click)="onSubmit()">Submit</button>
+    <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+  </div>  
+</ng-template> 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpParams,HttpHeaders } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { map, tap} from 'rxjs/operators';
 
@@ -33,4 +33,22 @@ export class SearchService {
     )
     
   }
+
+  do_add(item){    
+    console.log("IN ADD SERVICE")
+    var body = new HttpParams().set("item", JSON.stringify(item));
+    console.log(body);
+    console.log(item)
+    return this.http.post<any>('http://0.0.0.0:5000/angular-flask/do_add', body.toString(), {headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+    }).subscribe(
+      res=>{
+        console.log(res);
+      },
+      err=>{
+        console.log(err);
+      }
+    )
+    
+  }
+
 }

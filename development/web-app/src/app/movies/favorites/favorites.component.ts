@@ -12,14 +12,18 @@ export class FavoritesComponent implements OnInit {
   user_data;
   test_data;
 
-  constructor(public userService:UserService) { }
+  constructor(public userService:UserService) { 
+    this.userService._user_data.subscribe((value) => {
+      console.log("USER DATA");
+      console.log(this.user_data);
+      this.user_data = value;
+    }); 
+    this.user_data = this.userService.user_data;     
+    
+  }
 
   ngOnInit() {
-    this.test_data = this.userService.test_data;
-    this.userService.user_data.subscribe((value) => {
-      console.log("HIT")
-      this.user_data = value
-    }); 
+    this.userService.get_user(); 
   }
 
   

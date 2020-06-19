@@ -13,6 +13,10 @@ mark{
   background:pink;
 }
 
+div.card{
+  margin-bottom: 5px;
+}
+
 /*
   * Content
   */

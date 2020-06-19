@@ -11,14 +11,15 @@ export class HeaderComponent implements OnInit {
   user_data;
   test_data;
 
-  constructor(public userService:UserService) { }
-
-  ngOnInit() {
-    this.test_data = this.userService.test_data;
-    this.userService.user_data.subscribe((value) => {
+  constructor(public userService:UserService) { 
+    this.userService._user_data.subscribe((value) => {
       this.user_data = value
     }); 
+    
   }
-  
+
+  ngOnInit() {
+    
+  }
 
 }

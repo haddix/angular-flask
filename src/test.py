@@ -1,5 +1,11 @@
-from textblob import TextBlob
-txt = """Natural language processing (NLP) is a field of computer science, artificial intelligence, and computational linguistics concerned with the inter
-actions between computers and human (natural) languages."""
-blob = TextBlob(txt)
-print(blob.noun_phrases)
+import nltk
+text = nltk.word_tokenize("""It's Back! (re-release) 
+            May the Force be with you (re-release)
+            The force will be with you (re-release)
+            Somewhere, in space, this could all be happening right now.
+            A long time ago in a galaxy far, far away...
+            Coming to your galaxy this summer""")
+pos_tagged = nltk.pos_tag(text)
+
+nouns = filter(lambda x:x[1]=='NN',pos_tagged)
+print(list(nouns))

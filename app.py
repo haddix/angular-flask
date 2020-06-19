@@ -68,6 +68,16 @@ def do_search():
     return jsonify(search.do_search(terms))
 
 
+@app.route('/angular-flask/do_add', methods=['GET', 'POST'])
+def do_add():
+    print("DO ADD")
+    if request.method == 'POST':
+        req = request.values
+    else:
+        req = request.args
+    item = req.get("item")
+    return jsonify(search.do_add(item))
+
 @app.route('/angular-flask/movie_graphs', methods=['GET', 'POST'])
 def get_movie_graphs():
 

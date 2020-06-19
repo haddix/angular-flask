@@ -16,10 +16,12 @@ export class UserService {
   _user_data:Subject<any> = new Subject<any>();
   user_data = this._user_data.asObservable();
 
-  test_data = Math.floor(Math.random() * (999999 - 100000)) + 100000;;
 
   constructor(private http: HttpClient) { 
-
+    this._user_data.subscribe((value) => {
+        this.user_data = value;
+    });
+  
   }
   
 

@@ -1,9 +1,9 @@
 <div class="card">
     <div class="card-header">
-        My Favorites for x{{(user_data)}}x{{test_data}}
+        My Favorites
     </div>
     <div class="card-body">        
-        {{user_data?.favorites}}
+        <span class="badge badge-primary"*ngFor="let fav of user_data.favorites">{{fav}}</span>
     </div>
 </div>
 
@@ -12,6 +12,6 @@
         Things I like
     </div>
     <div class="card-body">
-         
+        <span class="badge badge-info"*ngFor="let noun of user_data.favorite_nouns">{{noun}}</span>
     </div>
 </div>
