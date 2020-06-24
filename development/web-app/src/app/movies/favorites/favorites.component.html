@@ -15,3 +15,12 @@
         <span class="badge badge-info"*ngFor="let noun of user_data.favorite_nouns">{{noun}}</span>
     </div>
 </div>
+
+<div class="card">
+    <div class="card-header">
+        Recommended
+    </div>
+    <div class="card-body">
+        <span class="badge badge-info"*ngFor="let item of user_data.recommended">{{item._source.title}}</span>
+    </div>
+</div>

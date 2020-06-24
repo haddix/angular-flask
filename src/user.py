@@ -28,6 +28,8 @@ def get_user(user_obj):
         print("CREATING A NEW USER")
         es.index(index="users", body=user_obj, id=user_obj["dn"])
 
+    user_obj = find_recommended(user_obj)
+
     return user_obj
 
 
@@ -68,4 +70,54 @@ def set_user_favorites(userObj, movie):
 
     print(userObj)
     set_user(userObj)
+    return userObj
+
+
+
+
+def find_recommended(userObj):
+    print("FIND RECOMMENDED")
+    if "favorite_nouns" not in userObj:
+        userObj["favorite_nouns"] = []
+
+    nouns = userObj["favorite_nouns"]
+
+    should = []
+
+    for noun in nouns:
+        tagline = {
+          "match_phrase": {
+            "taglines": {
+              "query": noun
+            }
+          }
+        }
+
+        title = {
+            "match_phrase": {
+                "taglines": {
+                    "query": noun
+                }
+            }
+        }
+
+        should.append(tagline)
+        should.append(title)
+
+
+    query = {
+              "size": 200,
+              "query": {
+                "bool": {
+                  "should": should
+                }
+              }
+            }
+
+    if len(userObj["favorite_nouns"]) > 0:
+        res = es.search(index="movies-taglines", body=query)
+        result = res
+
+        userObj["recommended"] = result["hits"]["hits"]
+
     return userObj

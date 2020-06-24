@@ -78,6 +78,12 @@ def do_add():
     item = req.get("item")
     return jsonify(search.do_add(item))
 
+
+@app.route('/angular-flask/get_recommended', methods=['GET', 'POST'])
+def get_recommended():
+    print("get_recommended")
+    return jsonify(search.find_recommended(user.get_user(get_credentials())))
+
 @app.route('/angular-flask/movie_graphs', methods=['GET', 'POST'])
 def get_movie_graphs():
 
